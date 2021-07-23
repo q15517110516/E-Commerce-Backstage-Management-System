@@ -3,9 +3,17 @@
  * @Date: 2021/7/23 10:43
  */
 
+.sideNav {
+    overflow: auto;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+}
+
 /*set icon align center when collapse*/
 .ant-menu.ant-menu-inline-collapsed > .ant-menu-item {
     display: flex;
+    align-items: center;
 }
 
 .trigger,
@@ -19,7 +27,6 @@
 /*menu collapse*/
 .trigger {
     font-size: 18px;
-    margin-left: 200px;
 }
 
 /*dropdown menu*/
@@ -51,11 +58,22 @@
 }
 
 .site-layout {
-    min-width: 900px;
+    margin-left: 200px;
 }
-.site-layout-background {
+
+.site-layout-background-header {
+    padding: 0;
     background: #fff;
-    min-height: 280px;
+    position: fixed;
+    left: 200px;
+    right: 0;
+}
+
+.site-layout-background-content {
+    background: #fff;
+    min-height: 500px;
     padding: 24px;
+    margin: 89px 16px 0 24px;
+    overflow: initial;
 }
 

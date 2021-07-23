@@ -49,10 +49,10 @@ class Home extends Component {
     render() {
         return (
             <Layout>
-                <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{ bottom: 0, top: 0, position: 'fixed', zIndex: 1, overflowY: 'auto' }}>
+                <Sider className="sideNav" trigger={null} collapsible collapsed={this.state.collapsed}>
                     {/*Side Bar*/}
                     <div className="logo" />
-                    <Menu className="sideNav" theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <Menu.Item key="1" icon={<HomeOutlined style={{ fontSize: 20 }} />}>
                             Home
                         </Menu.Item>
@@ -69,7 +69,7 @@ class Home extends Component {
                 </Sider>
                 <Layout className="site-layout">
                     {/*Header*/}
-                    <Header style={{ padding: 0, position: 'fixed', width: '100%', left: 0 }}>
+                    <Header className="site-layout-background-header">
                         <Menu mode="horizontal" >
                             <div key="menuFold" className="trigger" onClick={this.menuToggle} >
                                 {this.state.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -83,9 +83,91 @@ class Home extends Component {
                     </Header>
 
                     {/*Content*/}
-                    <Content style={{ padding: '35px 50px', margin: '65px 0 0 200px' }}>
-                        <div className="site-layout-background">
-
+                    <Content className="site-layout-background-content">
+                        <div>
+                            content
+                            <br/>
+                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>                            content
+                            <br/>
                         </div>
                     </Content>
                 </Layout>
