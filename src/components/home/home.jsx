@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/7/15 18:34
+ * @Date: 2021/7/23 10:44
  */
 
 import React, { Component } from 'react';
@@ -50,37 +50,41 @@ class Home extends Component {
         return (
             <Layout>
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{ bottom: 0, top: 0, position: 'fixed', zIndex: 1, overflowY: 'auto' }}>
+                    {/*Side Bar*/}
                     <div className="logo" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                        <Menu.Item key="1" icon={<HomeOutlined style={{ fontSize: 20 }}/>}>
+                    <Menu className="sideNav" theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                        <Menu.Item key="1" icon={<HomeOutlined style={{ fontSize: 20 }} />}>
                             Home
                         </Menu.Item>
-                        <Menu.Item key="2" icon={<LocalMallOutlined style={{ fontSize: 20 }}/>}>
+                        <Menu.Item key="2" icon={<LocalMallOutlined style={{ fontSize: 20 }} />}>
                             Products
                         </Menu.Item>
-                        <Menu.Item key="3" icon={<AssignmentOutlined style={{ fontSize: 20 }}/>}>
+                        <Menu.Item key="3" icon={<AssignmentOutlined style={{ fontSize: 20 }} />}>
                             Orders
                         </Menu.Item>
-                        <Menu.Item key="4" icon={<PeopleOutlineOutlined style={{ fontSize: 20 }}/>}>
+                        <Menu.Item key="4" icon={<PeopleOutlineOutlined style={{ fontSize: 20 }} />}>
                             Users
                         </Menu.Item>
                     </Menu>
                 </Sider>
-                <Layout className="site-layout" style={{ minWidth: 900 }}>
-                    <Header style={{ padding: 0, position: 'fixed', zIndex: 1, width: '100%', left: 200 }}>
-                        <Menu mode="horizontal" style={{ alignContent: "space-between"}}>
+                <Layout className="site-layout">
+                    {/*Header*/}
+                    <Header style={{ padding: 0, position: 'fixed', width: '100%', left: 0 }}>
+                        <Menu mode="horizontal" >
+                            <div key="menuFold" className="trigger" onClick={this.menuToggle} >
+                                {this.state.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                            </div>
                             <Dropdown overlay={loginMenu} trigger={['click']}>
                                 <div className="account" onClick={e => e.preventDefault()}>
                                     <AccountCircle className="account-icon" style={{ fontSize: 25 }} />
                                 </div>
                             </Dropdown>
-                            <div key="menuFold" className="trigger" onClick={this.menuToggle}>
-                                {this.state.collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
-                            </div>
                         </Menu>
                     </Header>
+
+                    {/*Content*/}
                     <Content style={{ padding: '35px 50px', margin: '65px 0 0 200px' }}>
-                        <div className="site-layout-background" style={{ padding: 24, minHeight: 280 }}>
+                        <div className="site-layout-background">
 
                         </div>
                     </Content>

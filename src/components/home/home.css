@@ -1,21 +1,38 @@
+/**
+ * @Author: Mingrui Liu
+ * @Date: 2021/7/23 10:43
+ */
+
+/*set icon align center when collapse*/
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-item {
+    display: flex;
+}
+
 .trigger,
 .account {
     padding: 0 24px;
-    font-size: 18px;
     line-height: 64px;
     cursor: pointer;
     transition: color 0.3s;
 }
 
+/*menu collapse*/
+.trigger {
+    font-size: 18px;
+    margin-left: 200px;
+}
+
+/*dropdown menu*/
 .login-dropdown {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/*login*/
 .account {
     display: flex;
-    order: 2;
+    margin-left: auto;
 }
 
 .account-icon {
@@ -33,7 +50,12 @@
     background: rgba(255, 255, 255, 0.3);
 }
 
-.site-layout .site-layout-background {
+.site-layout {
+    min-width: 900px;
+}
+.site-layout-background {
     background: #fff;
+    min-height: 280px;
+    padding: 24px;
 }
 
