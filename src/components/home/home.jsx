@@ -69,7 +69,7 @@ class Home extends Component {
                 </Sider>
                 <Layout className="site-layout">
                     {/*Header*/}
-                    <Header className="site-layout-background-header">
+                    <Header className="site-layout-background-header" style={ this.state.collapsed ? { marginLeft: -120 } : { marginLeft: 0 } }>
                         <Menu mode="horizontal" >
                             <div key="menuFold" className="trigger" onClick={this.menuToggle} >
                                 {this.state.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -83,7 +83,7 @@ class Home extends Component {
                     </Header>
 
                     {/*Content*/}
-                    <Content className="site-layout-background-content">
+                    <Content className="site-layout-background-content" style={ this.state.collapsed ? { margin: '89px 16px 24px 96px' } : { margin: '89px 16px 24px 216px' } }>
                         <div>
                             content
                             <br/>

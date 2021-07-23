@@ -57,23 +57,20 @@
     background: rgba(255, 255, 255, 0.3);
 }
 
-.site-layout {
-    margin-left: 200px;
-}
-
 .site-layout-background-header {
     padding: 0;
     background: #fff;
     position: fixed;
     left: 200px;
     right: 0;
+    transition: all 0.2s;
 }
 
 .site-layout-background-content {
     background: #fff;
     min-height: 500px;
     padding: 24px;
-    margin: 89px 16px 0 24px;
     overflow: initial;
+    transition: all 0.2s;
 }
 
