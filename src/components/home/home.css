@@ -1,21 +1,45 @@
+/**
+ * @Author: Mingrui Liu
+ * @Date: 2021/7/23 10:43
+ */
+
+.sideNav {
+    overflow: auto;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+}
+
+/*set icon align center when collapse*/
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-item {
+    display: flex;
+    align-items: center;
+}
+
 .trigger,
 .account {
     padding: 0 24px;
-    font-size: 18px;
     line-height: 64px;
     cursor: pointer;
     transition: color 0.3s;
 }
 
+/*menu collapse*/
+.trigger {
+    font-size: 18px;
+}
+
+/*dropdown menu*/
 .login-dropdown {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/*login*/
 .account {
     display: flex;
-    order: 2;
+    margin-left: auto;
 }
 
 .account-icon {
@@ -33,7 +57,20 @@
     background: rgba(255, 255, 255, 0.3);
 }
 
-.site-layout .site-layout-background {
+.site-layout-background-header {
+    padding: 0;
     background: #fff;
+    position: fixed;
+    left: 200px;
+    right: 0;
+    transition: all 0.2s;
+}
+
+.site-layout-background-content {
+    background: #fff;
+    min-height: 500px;
+    padding: 24px;
+    overflow: initial;
+    transition: all 0.2s;
 }
 
