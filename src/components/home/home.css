@@ -11,10 +11,31 @@
     z-index: 1;
 }
 
+.site-layout-background-header {
+    padding: 0;
+    background: #fff;
+    position: fixed;
+    width: 100%;
+}
+
+.site-layout-background-content {
+    background: #fff;
+    min-height: 500px;
+    padding: 24px;
+    overflow: initial;
+    transition: all 0.2s;
+}
+
 /*set icon align center when collapse*/
 .ant-menu.ant-menu-inline-collapsed > .ant-menu-item {
     display: flex;
     align-items: center;
+}
+
+.logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .trigger,
@@ -32,13 +53,6 @@
     transition: all 0.2s;
 }
 
-/*dropdown menu*/
-.login-dropdown {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /*login*/
 .account {
     display: flex;
@@ -54,25 +68,19 @@
     color: #1890ff;
 }
 
-.logo {
-    height: 32px;
-    margin: 16px;
-    background: rgba(255, 255, 255, 0.3);
+/*dropdown menu*/
+.ant-dropdown-menu {
+    border-radius: 4px;
+    min-width: 150px;
 }
 
-.site-layout-background-header {
-    padding: 0;
-    background: #fff;
-    position: fixed;
-    right: 0;
-    left: 0;
+.ant-dropdown-menu-title-content {
+    text-align: center;
+    font-size: 15px;
+    display: flex;
+    margin: auto;
 }
 
-.site-layout-background-content {
-    background: #fff;
-    min-height: 500px;
-    padding: 24px;
-    overflow: initial;
-    transition: all 0.2s;
+.ant-dropdown-menu-title-content > a > span {
+    margin-right: 10px;
 }
-
