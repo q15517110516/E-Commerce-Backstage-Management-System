@@ -4,17 +4,11 @@
  */
 
 import React, { Component } from 'react';
-import 'antd/dist/antd.css';
-import './home.css';
 import { Layout, Menu, Dropdown } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined, LoginOutlined } from '@ant-design/icons';
-import {
-    HomeOutlined,
-    LocalMallOutlined,
-    PeopleOutlineOutlined,
-    AccountCircle,
-    AssignmentOutlined
-} from '@material-ui/icons';
+import { HomeOutlined, LocalMallOutlined, PeopleOutlineOutlined, AccountCircle, AssignmentOutlined } from '@material-ui/icons';
+import 'antd/dist/antd.css';
+import './home.css';
 
 const { Header, Sider, Content } = Layout;
 const loginMenu = (
@@ -49,7 +43,7 @@ class Home extends Component {
     render() {
         return (
             <Layout>
-                <Sider className="sideNav" trigger={null} collapsible collapsed={this.state.collapsed}>
+                <Sider className="side-nav" trigger={null} collapsible collapsed={this.state.collapsed}>
                     {/*Side Bar*/}
                     <div className="logo" />
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
@@ -69,9 +63,9 @@ class Home extends Component {
                 </Sider>
                 <Layout className="site-layout">
                     {/*Header*/}
-                    <Header className="site-layout-background-header" style={ this.state.collapsed ? { marginLeft: -120 } : { marginLeft: 0 } }>
-                        <Menu mode="horizontal" >
-                            <div key="menuFold" className="trigger" onClick={this.menuToggle} >
+                    <Header className="site-layout-background-header">
+                        <Menu mode="horizontal">
+                            <div key="menuFold" className="trigger" onClick={this.menuToggle} style={ this.state.collapsed ? { marginLeft: 80 } : { marginLeft: 200 } }>
                                 {this.state.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                             </div>
                             <Dropdown overlay={loginMenu} trigger={['click']}>

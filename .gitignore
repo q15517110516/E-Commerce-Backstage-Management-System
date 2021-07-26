@@ -18,10 +18,9 @@
 .env.test.local
 .env.production.local
 
+# intellij configs
+.idea/
+
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
-.idea/E-Commerce-Backstage-Management-System.iml
-.idea/inspectionProfiles/Project_Default.xml
-.idea/modules.xml
-.idea/workspace.xml
+
