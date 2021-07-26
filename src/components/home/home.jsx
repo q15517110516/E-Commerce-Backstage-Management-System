@@ -4,28 +4,31 @@
  */
 
 import React, { Component } from 'react';
+import { Layout, Menu, Dropdown } from 'antd';
+import { MenuUnfoldOutlined, MenuFoldOutlined, LoginOutlined, LogoutOutlined } from '@ant-design/icons';
+import { HomeOutlined, LocalMallOutlined, PeopleOutlineOutlined, AccountCircle, AssignmentOutlined } from '@material-ui/icons';
 import 'antd/dist/antd.css';
 import './home.css';
-import { Layout, Menu, Dropdown } from 'antd';
-import { MenuUnfoldOutlined, MenuFoldOutlined, LoginOutlined } from '@ant-design/icons';
-import {
-    HomeOutlined,
-    LocalMallOutlined,
-    PeopleOutlineOutlined,
-    AccountCircle,
-    AssignmentOutlined
-} from '@material-ui/icons';
 
 const { Header, Sider, Content } = Layout;
 const loginMenu = (
     <Menu>
-        <Menu.Item key="login" style={{ minWidth: 200 }}>
-            {/*<div className="login-dropdown">*/}
-            {/*    <LoginOutlined />*/}
-            {/*    <a href="https://www.antgroup.com">*/}
-            {/*        Login*/}
-            {/*    </a>*/}
-            {/*</div>*/}
+        <Menu.Item key="login">
+            <a href="#">
+                <LoginOutlined />
+                Login
+            </a>
+        </Menu.Item>
+    </Menu>
+);
+
+const logoutMenu = (
+    <Menu>
+        <Menu.Item key="logout">
+            <a href="#">
+                <LogoutOutlined />
+                Logout
+            </a>
         </Menu.Item>
     </Menu>
 );
@@ -36,6 +39,7 @@ class Home extends Component {
         super();
         this.state = {
             collapsed: false,
+            loggedIn: false,
         };
         this.menuToggle = this.menuToggle.bind(this);
     }
@@ -49,7 +53,7 @@ class Home extends Component {
     render() {
         return (
             <Layout>
-                <Sider className="sideNav" trigger={null} collapsible collapsed={this.state.collapsed}>
+                <Sider className="side-nav" trigger={null} collapsible collapsed={this.state.collapsed}>
                     {/*Side Bar*/}
                     <div className="logo" />
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
@@ -69,14 +73,15 @@ class Home extends Component {
                 </Sider>
                 <Layout className="site-layout">
                     {/*Header*/}
-                    <Header className="site-layout-background-header" style={ this.state.collapsed ? { marginLeft: -120 } : { marginLeft: 0 } }>
-                        <Menu mode="horizontal" >
-                            <div key="menuFold" className="trigger" onClick={this.menuToggle} >
+                    <Header className="site-layout-background-header">
+                        <Menu mode="horizontal">
+                            <div key="menuFold" className="trigger" onClick={this.menuToggle} style={ this.state.collapsed ? { marginLeft: 80 } : { marginLeft: 200 } }>
                                 {this.state.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                             </div>
-                            <Dropdown overlay={loginMenu} trigger={['click']}>
+                            <Dropdown overlay={this.state.loggedIn ? logoutMenu : loginMenu}>
                                 <div className="account" onClick={e => e.preventDefault()}>
-                                    <AccountCircle className="account-icon" style={{ fontSize: 25 }} />
+                                    <AccountCircle className="account-icon" style={{ fontSize: 25, marginRight: 10 }} />
+                                    {this.state.loggedIn ? "Welcome, xxx" : "Please login"}
                                 </div>
                             </Dropdown>
                         </Menu>
@@ -84,7 +89,7 @@ class Home extends Component {
 
                     {/*Content*/}
                     <Content className="site-layout-background-content" style={ this.state.collapsed ? { margin: '89px 16px 24px 96px' } : { margin: '89px 16px 24px 216px' } }>
-                        <div>
+                        <div className="content">
                             content
                             <br/>
                             content
