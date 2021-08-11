@@ -3,7 +3,7 @@
  * @Date: 2021/8/11 16:25
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import NavSide from '../nav-side/nav-side';
 import NavTop from '../nav-top/nav-top';
 import { Layout } from 'antd';
@@ -16,7 +16,6 @@ class HomeLayout extends Component {
         super();
         this.state = {
             collapsed: false,
-            loggedIn: false,
         };
         this.menuToggle = this.menuToggle.bind(this);
     }
@@ -32,8 +31,9 @@ class HomeLayout extends Component {
             <Layout>
                 <NavSide collapsed={this.state.collapsed} />
                 <Layout className="site-layout">
-                    <NavTop collapsed={this.state.collapsed} menuToggle={this.menuToggle} isLoggedIn={this.state.loggedIn} />
+                    <NavTop collapsed={this.state.collapsed} menuToggle={this.menuToggle} />
                     {/*{this.props.children}*/}
+
                     {/*Content*/}
                     <Content className="site-layout-background-content" style={ this.state.collapsed ? { margin: '89px 16px 24px 96px' } : { margin: '89px 16px 24px 216px' } }>
                         <div className="content">

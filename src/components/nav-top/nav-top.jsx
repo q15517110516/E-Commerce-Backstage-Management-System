@@ -3,9 +3,9 @@
  * @Date: 2021/8/11 16:29
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Dropdown, Layout, Menu } from "antd";
-import {LoginOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
+import { LoginOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { AccountCircle } from "@material-ui/icons";
 
 const { Header } = Layout;
@@ -35,6 +35,9 @@ const logoutMenu = (
 class NavTop extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            loggedIn: false,
+        }
     }
 
     render() {
@@ -46,10 +49,10 @@ class NavTop extends Component {
                         <div key="menuFold" className="trigger" onClick={this.props.menuToggle} style={ this.props.collapsed ? { marginLeft: 80 } : { marginLeft: 200 } }>
                             {this.props.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                         </div>
-                        <Dropdown overlay={this.props.isLoggedIn ? logoutMenu : loginMenu}>
+                        <Dropdown overlay={this.state.loggedIn ? logoutMenu : loginMenu}>
                             <div className="account" onClick={e => e.preventDefault()}>
                                 <AccountCircle className="account-icon" style={{ fontSize: 25, marginRight: 10 }} />
-                                {this.props.isLoggedIn ? "Welcome, xxx" : "Please login"}
+                                {this.state.loggedIn ? "Welcome, xxx" : "Please login"}
                             </div>
                         </Dropdown>
                     </Menu>
