@@ -16,16 +16,7 @@ const { SubMenu } = Menu;
 class NavSide extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            foldMenu: false
-        };
     }
-
-    toggleFoldMenu = () => {
-        this.setState({
-            foldMenu: true
-        });
-    };
 
     render() {
         return (
