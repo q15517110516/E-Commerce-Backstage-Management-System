@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/7/14 13:02
+ * @Date: 2021/8/19 13:25
  */
 
 import React, { Component } from 'react';
@@ -14,6 +14,7 @@ class App extends Component {
           <Switch>
               <Route exact path="/" component={HomeLayout}/>
               <Route exact path="/product" component={HomeLayout}/>
+              <Route exact path="/product-category" component={HomeLayout}/>
               <Route exact path="/orders" component={HomeLayout}/>
               <Route exact path="/users" component={HomeLayout}/>
           </Switch>
