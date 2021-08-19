@@ -13,7 +13,9 @@ class App extends Component {
         <Router>
           <Switch>
               <Route exact path="/" component={HomeLayout}/>
-              <Redirect from="*" to="/"/>
+              <Route exact path="/product" component={HomeLayout}/>
+              <Route exact path="/orders" component={HomeLayout}/>
+              <Route exact path="/users" component={HomeLayout}/>
           </Switch>
         </Router>
     );
