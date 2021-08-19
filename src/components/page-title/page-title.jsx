@@ -13,9 +13,18 @@ class PageTitle extends Component {
         super(props);
     }
 
+    componentWillMount() {
+        if (this.props.title === 'Home') {
+            document.title = this.props.title;
+        }
+        else {
+            document.title = this.props.title + ' - List';
+        }
+    }
+
     render() {
         return (
-            <div>
+            <div className="page-title">
                 <Title level={2}>{this.props.title}</Title>
             </div>
         );
