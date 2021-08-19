@@ -32,95 +32,10 @@ class HomeLayout extends Component {
                 <NavSide collapsed={this.state.collapsed} />
                 <Layout className="site-layout">
                     <NavTop collapsed={this.state.collapsed} menuToggle={this.menuToggle} />
-                    {/*{this.props.children}*/}
 
                     {/*Content*/}
                     <Content className="site-layout-background-content" style={ this.state.collapsed ? { margin: '89px 16px 24px 96px' } : { margin: '89px 16px 24px 216px' } }>
-                        <div className="content">
-                            content
-                            <br/>
-                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>                            content
-                            <br/>
-                        </div>
+                        {this.props.children}
                     </Content>
                 </Layout>
             </Layout>
