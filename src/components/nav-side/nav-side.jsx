@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/11 16:20
+ * @Date: 2021/8/19 13:26
  */
 
 import React, { Component } from 'react';
@@ -10,6 +10,8 @@ import 'antd/dist/antd.css';
 import { Link, NavLink } from 'react-router-dom';
 
 const { Sider } = Layout;
+const { SubMenu } = Menu;
+
 
 class NavSide extends Component {
     constructor(props) {
@@ -27,11 +29,18 @@ class NavSide extends Component {
                             Home
                         </NavLink>
                     </Menu.Item>
-                    <Menu.Item key="2" icon={<LocalMallOutlined style={{ fontSize: 20 }} />}>
-                        <NavLink exact to="/product">
-                            Products
-                        </NavLink>
-                    </Menu.Item>
+                    <SubMenu key="2" icon={<LocalMallOutlined style={{ fontSize: 20 }} />} title="Products">
+                        <Menu.Item key="sub1">
+                            <NavLink exact to="/product">
+                                Product
+                            </NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="sub2">
+                            <NavLink exact to="/product-category">
+                                Category
+                            </NavLink>
+                        </Menu.Item>
+                    </SubMenu>
                     <Menu.Item key="3" icon={<AssignmentOutlined style={{ fontSize: 20 }} />}>
                         <NavLink exact to="/orders">
                             Orders
