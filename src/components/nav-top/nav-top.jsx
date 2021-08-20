@@ -1,12 +1,13 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/11 16:29
+ * @Date: 2021/8/20 17:56
  */
 
 import React, { Component } from 'react';
 import { Dropdown, Layout, Menu } from "antd";
 import { LoginOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { AccountCircle } from "@material-ui/icons";
+import 'antd/dist/antd.css';
 
 const { Header } = Layout;
 

@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/11 16:30
+ * @Date: 2021/8/20 17:55
  */
 
 .side-nav {
@@ -19,7 +19,6 @@
 }
 
 .site-layout-background-content {
-    background: #fff;
     min-height: 500px;
     padding: 24px;
     overflow: initial;

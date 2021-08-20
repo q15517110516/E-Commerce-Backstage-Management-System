@@ -1,0 +1,55 @@
+/**
+ * @Author: Mingrui Liu
+ * @Date: 2021/8/20 15:13
+ */
+
+.homepage-data {
+    display: flex;
+}
+
+.homepage-data-box {
+    flex: 1;
+}
+
+.home-data-card {
+    margin: 20px;
+    height: 150px;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    color: #2d9efc;
+}
+
+.product-icon {
+    color: #f68f40;
+}
+
+.order-icon {
+    color: #00a2ae;
+}
+
+.ant-card-body {
+    display: flex;
+    padding: 0 30px;
+    width: 100%;
+    align-items: center;
+}
+
+.home-data-card-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.home-data-card-text .number {
+    font: 30px sans-serif;
+}
+
+.home-data-card-text .text {
+    font: 18px sans-serif;
+}
