@@ -1,10 +1,11 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/19 13:51
+ * @Date: 2021/8/20 17:56
  */
 
 import React, { Component } from 'react';
 import { Typography } from 'antd';
+import 'antd/dist/antd.css';
 
 const { Title } = Typography;
 

@@ -25,29 +25,29 @@ class NavSide extends Component {
                 <div className="logo" />
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                     <Menu.Item key="1" icon={<HomeOutlined style={{ fontSize: 20 }} />}>
-                        <NavLink exact to="/">
+                        <NavLink exact activeClassName="ant-menu-item-selected" to="/">
                             Home
                         </NavLink>
                     </Menu.Item>
                     <SubMenu key="2" icon={<LocalMallOutlined style={{ fontSize: 20 }} />} title="Products">
                         <Menu.Item key="sub1">
-                            <NavLink exact to="/product">
+                            <NavLink activeClassName="ant-menu-item-selected" to="/product">
                                 Product
                             </NavLink>
                         </Menu.Item>
                         <Menu.Item key="sub2">
-                            <NavLink exact to="/product-category">
+                            <NavLink activeClassName="ant-menu-item-selected" to="/product-category">
                                 Category
                             </NavLink>
                         </Menu.Item>
                     </SubMenu>
                     <Menu.Item key="3" icon={<AssignmentOutlined style={{ fontSize: 20 }} />}>
-                        <NavLink exact to="/orders">
+                        <NavLink activeClassName="ant-menu-item-selected" to="/orders">
                             Orders
                         </NavLink>
                     </Menu.Item>
                     <Menu.Item key="4" icon={<PeopleOutlineOutlined style={{ fontSize: 20 }} />}>
-                        <NavLink exact to="/users">
+                        <NavLink activeClassName="ant-menu-item-selected" to="/users">
                             Users
                         </NavLink>
                     </Menu.Item>
