@@ -22,6 +22,10 @@ class Home extends Component {
         }
     }
 
+    componentWillMount() {
+        document.title = 'Home';
+    }
+
     render() {
         return (
             <div className="page-wrapper">
@@ -56,8 +60,6 @@ class Home extends Component {
                             </div>
                         </Card>
                     </Link>
-
-
                 </div>
             </div>
         );

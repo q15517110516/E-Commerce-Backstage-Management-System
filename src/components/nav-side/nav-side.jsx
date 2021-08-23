@@ -17,14 +17,13 @@ class NavSide extends Component {
         super(props);
         this.state = {
             selectedKeys: [],
-            openSubMenu: false,
+            openKeys: [],
         };
     }
 
     componentWillMount() {
         this.props.history.listen(location => {
             const pathName = location.pathname.split('/');
-            console.log(pathName)
             if (pathName !== null) {
                 this.setState({
                     selectedKeys: pathName[1]
@@ -34,11 +33,15 @@ class NavSide extends Component {
     }
 
     render() {
+        let currentLocation = window.location.pathname.split('/');
+        if (currentLocation[1] === '') {
+            currentLocation[1] = 'home';
+        }
         return (
             <Sider className="side-nav" trigger={null} collapsible collapsed={this.props.collapsed}>
                 {/*Side Bar*/}
                 <div className="logo" />
-                <Menu theme="dark" mode="inline" selectedKeys={this.state.selectedKeys.length ? this.state.selectedKeys : ['home']} >
+                <Menu theme="dark" mode="inline" selectedKeys={this.state.selectedKeys.length ? this.state.selectedKeys : currentLocation}>
                     <Menu.Item key="home" icon={<HomeOutlined style={{ fontSize: 20 }} />}>
                         <NavLink exact to="/">
                             Home
