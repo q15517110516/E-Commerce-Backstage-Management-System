@@ -1,53 +1,97 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/19 13:26
+ * @Date: 2021/8/23 21:05
  */
 
 import React, { Component } from 'react';
 import { AssignmentOutlined, HomeOutlined, LocalMallOutlined, PeopleOutlineOutlined } from "@material-ui/icons";
 import { Layout, Menu } from 'antd';
 import 'antd/dist/antd.css';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
-
 class NavSide extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            openKeys: [],
+        };
+        this.onOpenChange = this.onOpenChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.history.listen(location => {
+            const pathName = location.pathname.split('/');
+            if (pathName[1] === 'product' || pathName[1] === 'product-category') {
+                this.setState({
+                    openKeys: ['products']
+                });
+            }
+        });
+    }
+
+    onOpenChange = (openKeys) => {
+        console.log(openKeys);
+        console.log(this.state.openKeys);
+        if (openKeys.length === 0) {
+            this.setState({
+                openKeys: openKeys
+            })
+        }
+        const latestOpenKey = openKeys[openKeys.length - 1];
+        if (latestOpenKey && latestOpenKey.includes(openKeys[0])) {
+            this.setState({
+                openKeys: []
+            });
+        } else {
+            this.setState({
+                openKeys: [latestOpenKey]
+            })
+        }
     }
 
     render() {
+        // Get Current Window Pathname
+        // Highlight nav-side Menu When Router Changes
+        let currentLocation = window.location.pathname.split('/');
+        if (currentLocation[1] === '') {
+            currentLocation[1] = 'home';
+        }
         return (
             <Sider className="side-nav" trigger={null} collapsible collapsed={this.props.collapsed}>
                 {/*Side Bar*/}
                 <div className="logo" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1" icon={<HomeOutlined style={{ fontSize: 20 }} />}>
-                        <NavLink exact activeClassName="ant-menu-item-selected" to="/">
+                <Menu theme="dark" mode="inline"
+                      selectedKeys={currentLocation}
+                      onOpenChange={this.onOpenChange}
+                      openKeys={this.state.openKeys}
+                >
+                    <Menu.Item key="home" icon={<HomeOutlined style={{ fontSize: 20 }} />}>
+                        <NavLink exact to="/">
                             Home
                         </NavLink>
                     </Menu.Item>
-                    <SubMenu key="2" icon={<LocalMallOutlined style={{ fontSize: 20 }} />} title="Products">
-                        <Menu.Item key="sub1">
-                            <NavLink activeClassName="ant-menu-item-selected" to="/product">
+                    <SubMenu key="products" icon={<LocalMallOutlined style={{ fontSize: 20 }} />} title="Products" >
+                        <Menu.Item key="product">
+                            <NavLink to="/product">
                                 Product
                             </NavLink>
                         </Menu.Item>
-                        <Menu.Item key="sub2">
-                            <NavLink activeClassName="ant-menu-item-selected" to="/product-category">
+                        <Menu.Item key="product-category">
+                            <NavLink to="/product-category">
                                 Category
                             </NavLink>
                         </Menu.Item>
                     </SubMenu>
-                    <Menu.Item key="3" icon={<AssignmentOutlined style={{ fontSize: 20 }} />}>
-                        <NavLink activeClassName="ant-menu-item-selected" to="/orders">
+                    <Menu.Item key="orders" icon={<AssignmentOutlined style={{ fontSize: 20 }} />}>
+                        <NavLink to="/orders">
                             Orders
                         </NavLink>
                     </Menu.Item>
-                    <Menu.Item key="4" icon={<PeopleOutlineOutlined style={{ fontSize: 20 }} />}>
-                        <NavLink activeClassName="ant-menu-item-selected" to="/users">
+                    <Menu.Item key="users" icon={<PeopleOutlineOutlined style={{ fontSize: 20 }} />}>
+                        <NavLink to="/users">
                             Users
                         </NavLink>
                     </Menu.Item>
@@ -57,4 +101,4 @@ class NavSide extends Component {
     }
 }
 
-export default NavSide;
+export default withRouter(NavSide);
