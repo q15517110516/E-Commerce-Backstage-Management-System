@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/19 13:26
+ * @Date: 2021/8/23 21:05
  */
 
 import React, { Component } from 'react';
@@ -16,23 +16,45 @@ class NavSide extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedKeys: [],
             openKeys: [],
         };
+        this.onOpenChange = this.onOpenChange.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.history.listen(location => {
             const pathName = location.pathname.split('/');
-            if (pathName !== null) {
+            if (pathName[1] === 'product' || pathName[1] === 'product-category') {
                 this.setState({
-                    selectedKeys: pathName[1]
+                    openKeys: ['products']
                 });
             }
         });
     }
 
+    onOpenChange = (openKeys) => {
+        console.log(openKeys);
+        console.log(this.state.openKeys);
+        if (openKeys.length === 0) {
+            this.setState({
+                openKeys: openKeys
+            })
+        }
+        const latestOpenKey = openKeys[openKeys.length - 1];
+        if (latestOpenKey && latestOpenKey.includes(openKeys[0])) {
+            this.setState({
+                openKeys: []
+            });
+        } else {
+            this.setState({
+                openKeys: [latestOpenKey]
+            })
+        }
+    }
+
     render() {
+        // Get Current Window Pathname
+        // Highlight nav-side Menu When Router Changes
         let currentLocation = window.location.pathname.split('/');
         if (currentLocation[1] === '') {
             currentLocation[1] = 'home';
@@ -41,7 +63,11 @@ class NavSide extends Component {
             <Sider className="side-nav" trigger={null} collapsible collapsed={this.props.collapsed}>
                 {/*Side Bar*/}
                 <div className="logo" />
-                <Menu theme="dark" mode="inline" selectedKeys={this.state.selectedKeys.length ? this.state.selectedKeys : currentLocation}>
+                <Menu theme="dark" mode="inline"
+                      selectedKeys={currentLocation}
+                      onOpenChange={this.onOpenChange}
+                      openKeys={this.state.openKeys}
+                >
                     <Menu.Item key="home" icon={<HomeOutlined style={{ fontSize: 20 }} />}>
                         <NavLink exact to="/">
                             Home
