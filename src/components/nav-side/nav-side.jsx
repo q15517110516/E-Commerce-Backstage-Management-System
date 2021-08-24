@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/23 21:05
+ * @Date: 2021/8/24 15:58
  */
 
 import React, { Component } from 'react';
@@ -11,12 +11,13 @@ import { Link, NavLink, withRouter } from 'react-router-dom';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
+const rootSubmenuKeys = ['products'];
 
 class NavSide extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            openKeys: [],
+            openKeys: ['products'],
         };
         this.onOpenChange = this.onOpenChange.bind(this);
     }
@@ -26,28 +27,21 @@ class NavSide extends Component {
             const pathName = location.pathname.split('/');
             if (pathName[1] === 'product' || pathName[1] === 'product-category') {
                 this.setState({
-                    openKeys: ['products']
+                    openKeys: ['products'],
                 });
             }
         });
     }
 
     onOpenChange = (openKeys) => {
-        console.log(openKeys);
-        console.log(this.state.openKeys);
-        if (openKeys.length === 0) {
+        const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
+        if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
             this.setState({
                 openKeys: openKeys
             })
-        }
-        const latestOpenKey = openKeys[openKeys.length - 1];
-        if (latestOpenKey && latestOpenKey.includes(openKeys[0])) {
-            this.setState({
-                openKeys: []
-            });
         } else {
             this.setState({
-                openKeys: [latestOpenKey]
+                openKeys: latestOpenKey ? [latestOpenKey] : []
             })
         }
     }
@@ -65,9 +59,8 @@ class NavSide extends Component {
                 <div className="logo" />
                 <Menu theme="dark" mode="inline"
                       selectedKeys={currentLocation}
-                      onOpenChange={this.onOpenChange}
                       openKeys={this.state.openKeys}
-                >
+                      onOpenChange={this.onOpenChange}>
                     <Menu.Item key="home" icon={<HomeOutlined style={{ fontSize: 20 }} />}>
                         <NavLink exact to="/">
                             Home
