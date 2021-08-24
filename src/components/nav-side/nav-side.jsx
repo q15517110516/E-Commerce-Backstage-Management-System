@@ -54,19 +54,26 @@ class NavSide extends Component {
             currentLocation[1] = 'home';
         }
         return (
-            <Sider className="side-nav" trigger={null} collapsible collapsed={this.props.collapsed}>
+            <Sider className="side-nav"
+                   trigger={null}
+                   collapsible
+                   collapsed={this.props.collapsed}>
                 {/*Side Bar*/}
                 <div className="logo" />
-                <Menu theme="dark" mode="inline"
+                <Menu theme="dark"
+                      mode="inline"
                       selectedKeys={currentLocation}
                       openKeys={this.state.openKeys}
                       onOpenChange={this.onOpenChange}>
-                    <Menu.Item key="home" icon={<HomeOutlined style={{ fontSize: 20 }} />}>
+                    <Menu.Item key="home"
+                               icon={<HomeOutlined style={{ fontSize: 20 }} />}>
                         <NavLink exact to="/">
                             Home
                         </NavLink>
                     </Menu.Item>
-                    <SubMenu key="products" icon={<LocalMallOutlined style={{ fontSize: 20 }} />} title="Products" >
+                    <SubMenu key="products"
+                             icon={<LocalMallOutlined style={{ fontSize: 20 }} />}
+                             title="Products" >
                         <Menu.Item key="product">
                             <NavLink to="/product">
                                 Product
@@ -78,12 +85,14 @@ class NavSide extends Component {
                             </NavLink>
                         </Menu.Item>
                     </SubMenu>
-                    <Menu.Item key="orders" icon={<AssignmentOutlined style={{ fontSize: 20 }} />}>
+                    <Menu.Item key="orders"
+                               icon={<AssignmentOutlined style={{ fontSize: 20 }} />}>
                         <NavLink to="/orders">
                             Orders
                         </NavLink>
                     </Menu.Item>
-                    <Menu.Item key="users" icon={<PeopleOutlineOutlined style={{ fontSize: 20 }} />}>
+                    <Menu.Item key="users"
+                               icon={<PeopleOutlineOutlined style={{ fontSize: 20 }} />}>
                         <NavLink to="/users">
                             Users
                         </NavLink>

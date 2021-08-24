@@ -47,12 +47,17 @@ class NavTop extends Component {
                 {/*Header*/}
                 <Header className="site-layout-background-header">
                     <Menu mode="horizontal">
-                        <div key="menuFold" className="trigger" onClick={this.props.menuToggle} style={ this.props.collapsed ? { marginLeft: 80 } : { marginLeft: 200 } }>
+                        <div key="menuFold"
+                             className="trigger"
+                             onClick={this.props.menuToggle}
+                             style={ this.props.collapsed ? { marginLeft: 80 } : { marginLeft: 200 } }>
                             {this.props.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                         </div>
                         <Dropdown overlay={this.state.loggedIn ? logoutMenu : loginMenu}>
-                            <div className="account" onClick={e => e.preventDefault()}>
-                                <AccountCircle className="account-icon" style={{ fontSize: 25, marginRight: 10 }} />
+                            <div className="account"
+                                 onClick={e => e.preventDefault()}>
+                                <AccountCircle className="account-icon"
+                                               style={{ fontSize: 25, marginRight: 10 }} />
                                 {this.state.loggedIn ? "Welcome, xxx" : "Please login"}
                             </div>
                         </Dropdown>
