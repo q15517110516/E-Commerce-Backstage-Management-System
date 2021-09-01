@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/24 16:02
+ * @Date: 2021/9/1 16:12
  */
 
 import React, { Component } from 'react';
@@ -13,11 +13,27 @@ import 'antd/dist/antd.css';
 class Login extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            username: '',
+            password: ''
+        }
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onSubmit = (values) => {
-        console.log('e')
+    componentWillMount() {
+        document.title = 'Please Login';
+    }
+
+    onInputChange = e => {
+        let inputName = e.target.name,
+            inputValue = e.target.value;
+        this.setState({
+            [inputName]: inputValue
+        });
+    }
+
+    onSubmit = values => {
+        console.log(values)
     }
     render() {
         return (
@@ -43,7 +59,9 @@ class Login extends Component {
                                                },
                                            ]}>
                                     <Input prefix={<UserOutlined className="site-form-item-icon" />}
-                                           placeholder="Username" />
+                                           name="username"
+                                           placeholder="Username"
+                                           onChange={e => this.onInputChange(e)} />
                                 </Form.Item>
                                 {/*Password*/}
                                 <Form.Item name="password"
@@ -54,9 +72,10 @@ class Login extends Component {
                                                 },
                                             ]}>
                                     <Input prefix={<LockOutlined className="site-form-item-icon" />}
+                                           name="password"
                                            type="password"
                                            placeholder="Password"
-                                    />
+                                           onChange={e => this.onInputChange(e)} />
                                 </Form.Item>
                                 {/*Login Button*/}
                                 <Form.Item>
