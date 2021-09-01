@@ -31,19 +31,23 @@ class MUtil {
         })
     }
 
+    // Login Redirect
     doLogin(){
         window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
     }
 
+    // Get Url Params
     getUrlParam(name) {
+        // ?username=123&password=234
         let queryString = window.location.search.split('?')[1] || '',
             reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"),
-            result = queryString.match(reg);
+            result = queryString.match(reg); // result = ['username=123', '', '123', '&']
         return result ? decodeURIComponent(result[2]) : null;
     }
 
+    // Error Tip
     errorTips(errMsg) {
-        alert(errMsg || 'wrong');
+        alert(errMsg || 'Something’s wrong');
     }
 }
 

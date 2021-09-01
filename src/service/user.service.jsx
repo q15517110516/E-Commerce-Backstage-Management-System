@@ -12,7 +12,8 @@ class UserService extends Component {
     login(loginInfo) {
         return _mutil.request({
             type: 'GET',
-            url: './api/login.json',
+            url: './api/login.json', //'http://admintest.happymmall.com/manage/user/login.do'
+
             data: loginInfo
         });
     }
