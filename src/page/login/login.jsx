@@ -9,13 +9,19 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Form, Input, Button } from 'antd';
 import './login.css';
 import 'antd/dist/antd.css';
+import MUtil from '../../util/mutil';
+import UserService from '../../service/user.service';
+
+const _mutil = new MUtil();
+const _user = new UserService();
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirect: _mutil.getUrlParam('redirect') || '/'
         }
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -33,7 +39,14 @@ class Login extends Component {
     }
 
     onSubmit = values => {
-        console.log(values)
+        _user.login({
+            username: this.state.username,
+            password: this.state.password
+        }).then(() => {
+            this.props.history.push(this.state.redirect);
+        }, (errMsg) => {
+            _mutil.errorTips(errMsg);
+        });
     }
     render() {
         return (

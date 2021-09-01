@@ -1,0 +1,16 @@
+{
+  "status": 0,
+  "msg": "Login Success",
+  "data": {
+    "answer": "123123",
+    "createTime": 1478422605000,
+    "email": "123123123@mmmall.com",
+    "id": 1,
+    "password": "",
+    "phone": "19999999998",
+    "question": "123sss",
+    "role": 1,
+    "updateTime": 1623295637000,
+    "username": "admin"
+  }
+}
