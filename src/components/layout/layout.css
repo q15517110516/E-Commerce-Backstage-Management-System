@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/20 17:55
+ * @Date: 2021/9/2 19:27
  */
 
 .side-nav {
@@ -68,9 +68,12 @@
 }
 
 /*dropdown menu*/
+.ant-dropdown {
+    min-width: 160px !important;
+}
+
 .ant-dropdown-menu {
     border-radius: 4px;
-    min-width: 150px;
 }
 
 .ant-dropdown-menu-title-content {
@@ -78,8 +81,18 @@
     font-size: 15px;
     display: flex;
     margin: auto;
+    justify-content: center;
 }
 
 .ant-dropdown-menu-title-content > a > span {
     margin-right: 10px;
+}
+
+.MuiButton-textPrimary {
+    color: #1890ff !important;
+}
+
+.MuiButton-outlinedPrimary {
+    color: #1890ff !important;
+    border: 1px solid #1890ff !important;
 }

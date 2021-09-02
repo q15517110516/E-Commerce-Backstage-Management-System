@@ -21,11 +21,11 @@ class HomeLayout extends Component {
         this.menuToggle = this.menuToggle.bind(this);
     }
 
-    menuToggle = () => {
+    menuToggle() {
         this.setState({
             collapsed: !this.state.collapsed,
         });
-    };
+    }
 
     render() {
         return (

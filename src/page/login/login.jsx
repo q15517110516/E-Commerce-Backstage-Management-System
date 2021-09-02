@@ -1,12 +1,12 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/9/1 16:12
+ * @Date: 2021/9/2 15:19
  */
 
 import React, { Component } from 'react';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography, Button } from '@material-ui/core';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Form, Input, Button } from 'antd';
+import { Form, Input  } from 'antd';
 import './login.css';
 import 'antd/dist/antd.css';
 import MUtil from '../../util/mutil';
@@ -30,7 +30,7 @@ class Login extends Component {
         document.title = 'Please Login';
     }
 
-    onInputChange = e => {
+    onInputChange(e) {
         let inputName = e.target.name,
             inputValue = e.target.value;
         this.setState({
@@ -38,16 +38,24 @@ class Login extends Component {
         });
     }
 
-    onSubmit = values => {
+    onKeyUp(e) {
+        if (e.keyCode === 13) {
+            this.onSubmit();
+        }
+    }
+
+    onSubmit() {
         _user.login({
             username: this.state.username,
             password: this.state.password
-        }).then(() => {
-            this.props.history.push(this.state.redirect);
+        }).then((res) => {
+            _mutil.setStorage('userInfo', res); // store username and password to localStorage
+            this.props.history.push(this.state.redirect); // redirect after successful login
         }, (errMsg) => {
             _mutil.errorTips(errMsg);
         });
     }
+
     render() {
         return (
             <div className="login-page">
@@ -74,7 +82,8 @@ class Login extends Component {
                                     <Input prefix={<UserOutlined className="site-form-item-icon" />}
                                            name="username"
                                            placeholder="Username"
-                                           onChange={e => this.onInputChange(e)} />
+                                           onChange={e => this.onInputChange(e)}
+                                           onKeyUp={e => this.onKeyUp(e)} />
                                 </Form.Item>
                                 {/*Password*/}
                                 <Form.Item name="password"
@@ -88,13 +97,16 @@ class Login extends Component {
                                            name="password"
                                            type="password"
                                            placeholder="Password"
-                                           onChange={e => this.onInputChange(e)} />
+                                           onChange={e => this.onInputChange(e)}
+                                           onKeyUp={e => this.onKeyUp(e)} />
                                 </Form.Item>
                                 {/*Login Button*/}
                                 <Form.Item>
-                                    <Button type="primary"
-                                            htmlType="submit"
-                                            className="login-form-button">
+                                    <Button color="primary"
+                                            fullWidth={true}
+                                            variant="contained"
+                                            className="login-form-button"
+                                            onClick={this.onSubmit}>
                                         Log in
                                     </Button>
                                 </Form.Item>

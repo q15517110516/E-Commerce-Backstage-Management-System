@@ -1,7 +1,8 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/9/1 20:36
+ * @Date: 2021/9/2 15:19
  */
+
 import $ from 'jquery';
 
 class MUtil {
@@ -13,10 +14,11 @@ class MUtil {
                 dataType: param.dataType || 'json',
                 data: param.data || null,
                 success: res => {
-                    //
+                    // Success
                     if (0 === res.status) {
                         typeof resolve === 'function' && resolve(res.data, res.msg);
                     }
+                    // Not loggedin, redirect to login page
                     else if (10 === res.status) {
                         this.doLogin();
                     }
@@ -48,6 +50,33 @@ class MUtil {
     // Error Tip
     errorTips(errMsg) {
         alert(errMsg || 'Something’s wrong');
+    }
+
+    // Store Data to LocalStorage
+    setStorage(name, data) {
+        let dataType = typeof data;
+        if (dataType === 'object') {
+            window.localStorage.setItem(name, JSON.stringify(data));
+        } else if (['number', 'string', 'boolean'].indexOf(dataType) >= 0) {
+            window.localStorage.setItem(name, data);
+        } else {
+            alert('Type cannot be used for localStorage');
+        }
+    }
+
+    // Get Stored Data
+    getStorage(name) {
+        let data = window.localStorage.getItem(name);
+        if (data) {
+            return JSON.parse(data);
+        } else {
+            return '';
+        }
+    }
+
+    // Remove Stored Data
+    removeStorage(name) {
+        window.localStorage.removeItem(name);
     }
 }
 

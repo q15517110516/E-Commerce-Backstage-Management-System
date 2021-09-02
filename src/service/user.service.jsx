@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/9/1 22:30
+ * @Date: 2021/9/2 17:21
  */
 
 import React, { Component } from 'react';
@@ -11,10 +11,16 @@ const _mutil = new MUtil();
 class UserService extends Component {
     login(loginInfo) {
         return _mutil.request({
-            type: 'GET',
-            url: './api/login.json', //'http://admintest.happymmall.com/manage/user/login.do'
-
+            type: 'POST',
+            url: 'http://admintest.happymmall.com/manage/user/login.do',
             data: loginInfo
+        });
+    }
+
+    logout() {
+        return _mutil.request({
+            type: 'POST',
+            url: 'http://admintest.happymmall.com/user/logout.do'
         });
     }
 }
