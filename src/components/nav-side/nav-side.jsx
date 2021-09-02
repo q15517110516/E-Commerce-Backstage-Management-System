@@ -33,7 +33,7 @@ class NavSide extends Component {
         });
     }
 
-    onOpenChange = (openKeys) => {
+    onOpenChange(openKeys) {
         const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
         if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
             this.setState({

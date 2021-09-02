@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/9/1 16:12
+ * @Date: 2021/9/2 15:19
  */
 
 import React, { Component } from 'react';
@@ -30,7 +30,7 @@ class Login extends Component {
         document.title = 'Please Login';
     }
 
-    onInputChange = e => {
+    onInputChange(e) {
         let inputName = e.target.name,
             inputValue = e.target.value;
         this.setState({
@@ -38,12 +38,13 @@ class Login extends Component {
         });
     }
 
-    onSubmit = values => {
+    onSubmit() {
         _user.login({
             username: this.state.username,
             password: this.state.password
-        }).then(() => {
-            this.props.history.push(this.state.redirect);
+        }).then((res) => {
+            _mutil.setStorage('userInfo', res); // store username nd password to localStorage
+            this.props.history.push(this.state.redirect); // redirect after successful login
         }, (errMsg) => {
             _mutil.errorTips(errMsg);
         });
