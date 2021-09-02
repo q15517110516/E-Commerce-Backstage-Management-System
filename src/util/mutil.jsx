@@ -14,9 +14,11 @@ class MUtil {
                 dataType: param.dataType || 'json',
                 data: param.data || null,
                 success: res => {
+                    // Success
                     if (0 === res.status) {
                         typeof resolve === 'function' && resolve(res.data, res.msg);
                     }
+                    // Not loggedin, redirect to login page
                     else if (10 === res.status) {
                         this.doLogin();
                     }
@@ -50,7 +52,7 @@ class MUtil {
         alert(errMsg || 'Something’s wrong');
     }
 
-    // Store Data
+    // Store Data to LocalStorage
     setStorage(name, data) {
         let dataType = typeof data;
         if (dataType === 'object') {

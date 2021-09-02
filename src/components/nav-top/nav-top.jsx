@@ -46,7 +46,7 @@ class NavTop extends Component {
     onLogout() {
         _user.logout().then(res => {
             _mutil.removeStorage('userInfo');
-            window.location.href = '/login';
+            window.location.href = '/login'; // redirect to login page after logout
         }, errMsg => {
             _mutil.errorTips(errMsg);
         });

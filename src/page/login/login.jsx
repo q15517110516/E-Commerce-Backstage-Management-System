@@ -49,7 +49,7 @@ class Login extends Component {
             username: this.state.username,
             password: this.state.password
         }).then((res) => {
-            _mutil.setStorage('userInfo', res); // store username nd password to localStorage
+            _mutil.setStorage('userInfo', res); // store username and password to localStorage
             this.props.history.push(this.state.redirect); // redirect after successful login
         }, (errMsg) => {
             _mutil.errorTips(errMsg);
