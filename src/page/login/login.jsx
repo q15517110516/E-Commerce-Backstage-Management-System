@@ -4,9 +4,9 @@
  */
 
 import React, { Component } from 'react';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography, Button } from '@material-ui/core';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Form, Input, Button } from 'antd';
+import { Form, Input  } from 'antd';
 import './login.css';
 import 'antd/dist/antd.css';
 import MUtil from '../../util/mutil';
@@ -38,6 +38,12 @@ class Login extends Component {
         });
     }
 
+    onKeyUp(e) {
+        if (e.keyCode === 13) {
+            this.onSubmit();
+        }
+    }
+
     onSubmit() {
         _user.login({
             username: this.state.username,
@@ -49,6 +55,7 @@ class Login extends Component {
             _mutil.errorTips(errMsg);
         });
     }
+
     render() {
         return (
             <div className="login-page">
@@ -75,7 +82,8 @@ class Login extends Component {
                                     <Input prefix={<UserOutlined className="site-form-item-icon" />}
                                            name="username"
                                            placeholder="Username"
-                                           onChange={e => this.onInputChange(e)} />
+                                           onChange={e => this.onInputChange(e)}
+                                           onKeyUp={e => this.onKeyUp(e)} />
                                 </Form.Item>
                                 {/*Password*/}
                                 <Form.Item name="password"
@@ -89,13 +97,16 @@ class Login extends Component {
                                            name="password"
                                            type="password"
                                            placeholder="Password"
-                                           onChange={e => this.onInputChange(e)} />
+                                           onChange={e => this.onInputChange(e)}
+                                           onKeyUp={e => this.onKeyUp(e)} />
                                 </Form.Item>
                                 {/*Login Button*/}
                                 <Form.Item>
-                                    <Button type="primary"
-                                            htmlType="submit"
-                                            className="login-form-button">
+                                    <Button color="primary"
+                                            fullWidth={true}
+                                            variant="contained"
+                                            className="login-form-button"
+                                            onClick={this.onSubmit}>
                                         Log in
                                     </Button>
                                 </Form.Item>

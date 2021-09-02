@@ -38,11 +38,11 @@ class NavSide extends Component {
         if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
             this.setState({
                 openKeys: openKeys
-            })
+            });
         } else {
             this.setState({
                 openKeys: latestOpenKey ? [latestOpenKey] : []
-            })
+            });
         }
     }
 
