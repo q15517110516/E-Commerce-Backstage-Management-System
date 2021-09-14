@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/24 16:09
+ * @Date: 09/14/21 8:04 PM
  */
 
 import React, { Component } from 'react';
@@ -12,6 +12,7 @@ import Category from "./page/category/category";
 import Orders from "./page/orders/orders";
 import Users from "./page/users/users";
 import Login from "./page/login/login";
+import ErrorPage from "./page/error/error";
 
 class App extends Component {
   render() {
@@ -23,14 +24,16 @@ class App extends Component {
                   <Route path="/product-category" component={Category} />
                   <Route path="/orders" component={Orders} />
                   <Route path="/users" component={Users} />
+                  <Route component={ErrorPage} />
               </Switch>
+
           </HomeLayout>
       );
       return (
           <Router>
               <Switch>
                   <Route path="/login" component={Login} />
-                  <Route path="/" render={props => LayoutRouter } />
+                  <Route path="/" render={props => LayoutRouter} />
               </Switch>
           </Router>
       );
