@@ -67,10 +67,10 @@ class NavTop extends Component {
         const logoutMenu = (
             <Menu>
                 <Menu.Item key="logout">
-                    <Link onClick={this.showDialog}>
+                    <a onClick={this.showDialog}>
                         <LogoutOutlined />
                         Logout
-                    </Link>
+                    </a>
                     <Dialog open={this.state.showDialog}
                             onClose={this.onCancelClick}
                             fullWidth={true}

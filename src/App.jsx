@@ -26,7 +26,6 @@ class App extends Component {
                   <Route path="/users" component={Users} />
                   <Route component={ErrorPage} />
               </Switch>
-
           </HomeLayout>
       );
       return (
