@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/23 21:05
+ * @Date: 09/14/21 3:50 PM
  */
 
 import React, { Component } from 'react';
@@ -10,15 +10,18 @@ import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import { Card } from 'antd';
-import { Link }    from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Number from "../../util/number";
+
+const _number = new Number();
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userCount: '-',
-            productCount: '-',
-            orderCount: '-'
+            userCount: _number.formatNumber('4328'),
+            productCount: _number.formatNumber('18340'),
+            orderCount: _number.formatNumber('24597')
         }
     }
 

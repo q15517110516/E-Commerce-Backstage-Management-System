@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/23 21:06
+ * @Date: 09/14/21 3:24 PM
  */
 
 .homepage-data {
@@ -53,4 +53,8 @@
 
 .home-data-card-text .text {
     font: 18px sans-serif;
+}
+
+.number {
+    margin-top: 5px;
 }
