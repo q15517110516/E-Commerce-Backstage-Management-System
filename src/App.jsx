@@ -24,7 +24,6 @@ class App extends Component {
                   <Route path="/product-category" component={Category} />
                   <Route path="/orders" component={Orders} />
                   <Route path="/users" component={Users} />
-                  <Route component={ErrorPage} />
               </Switch>
           </HomeLayout>
       );
