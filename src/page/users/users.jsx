@@ -7,16 +7,17 @@ import React, { Component } from 'react';
 import PageTitle from "../../components/page-title/page-title";
 import { Table } from 'antd';
 import 'antd/dist/antd.css';
-import MUtil from '../../util/mutil';
 import GetUsersService from '../../service/getUsers.service';
+import * as _moment from 'moment';
 
-const _mutil = new MUtil();
+const moment = _moment;
 const _getUser = new GetUsersService();
 
 const columns = [
     {
         dataIndex: 'id',
         title: 'ID',
+        render: id => `${id.value}`,
         width: '10%'
     },
     {
@@ -26,10 +27,10 @@ const columns = [
         width: '10%'
     },
     {
-        dataIndex: 'age',
+        dataIndex: 'dob',
         title: 'Age',
-        sorter: true,
-        width: '10%'
+        render: dob => `${dob.age}`,
+        width: '5%'
     },
     {
         dataIndex: 'email',
@@ -42,20 +43,18 @@ const columns = [
         width: '15%'
     },
     {
-        dataIndex: 'registration time',
+        dataIndex: 'registered',
         title: 'Registration Time',
+        render: registered => `${moment(registered.date).format('MMM Do YYYY')}`,
         width: '20%'
     }
 ];
-
-
 
 class Users extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data: [],
-            otherData: [],
             pagination: {
                 current: 1,
                 pageSize: 10,
@@ -67,14 +66,6 @@ class Users extends Component {
         this.getUsers(this.state.pagination);
     }
 
-    handleTableChange = (pagination, sorter) => {
-        this.getUsers({
-            sortField: sorter.field,
-            sortOrder: sorter.order,
-            pagination
-        });
-    };
-
     getUsers(params = {}) {
         _getUser.getRandomUsers()
             .then(data => {
@@ -84,7 +75,6 @@ class Users extends Component {
                         ...params.pagination,
                         total: data.totalCount,
                     }
-                    // other.
                 })
             })
     }
@@ -99,7 +89,6 @@ class Users extends Component {
                         rowKey={record => record.login.uuid}
                         dataSource={this.state.data}
                         pagination={this.state.pagination}
-                        onChange={this.handleTableChange}
                     />
                 </div>
             </div>

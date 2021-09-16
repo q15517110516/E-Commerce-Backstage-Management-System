@@ -118,7 +118,8 @@ class NavTop extends Component {
                             <div className="account"
                                  onClick={e => e.preventDefault()}>
                                 <AccountCircle className="account-icon"
-                                               style={{ fontSize: 25, marginRight: 10 }} />
+                                               style={{ fontSize: 25, marginRight: 10 }}
+                                />
                                 {this.state.username ? `Welcome, ${this.state.username}` : "Please login"}
                             </div>
                         </Dropdown>

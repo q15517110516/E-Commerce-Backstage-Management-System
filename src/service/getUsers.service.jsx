@@ -8,15 +8,10 @@ import $ from 'jquery';
 class GetUsersService {
     getRandomUsers() {
         return $.ajax({
-            url: 'https://randomuser.me/api/?results=240',
-            dataType: 'json',
-            success: function (res) {
-                console.log(res);
-            }
+            url: 'https://randomuser.me/api/?results=240&nat=us',
+            dataType: 'json'
         });
     }
-
-
 }
 
 export default GetUsersService;

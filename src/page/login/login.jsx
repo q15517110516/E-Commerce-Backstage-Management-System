@@ -83,7 +83,8 @@ class Login extends Component {
                                            name="username"
                                            placeholder="Username"
                                            onChange={e => this.onInputChange(e)}
-                                           onKeyUp={e => this.onKeyUp(e)} />
+                                           onKeyUp={e => this.onKeyUp(e)}
+                                    />
                                 </Form.Item>
                                 {/*Password*/}
                                 <Form.Item name="password"
@@ -98,7 +99,8 @@ class Login extends Component {
                                            type="password"
                                            placeholder="Password"
                                            onChange={e => this.onInputChange(e)}
-                                           onKeyUp={e => this.onKeyUp(e)} />
+                                           onKeyUp={e => this.onKeyUp(e)}
+                                    />
                                 </Form.Item>
                                 {/*Login Button*/}
                                 <Form.Item>
