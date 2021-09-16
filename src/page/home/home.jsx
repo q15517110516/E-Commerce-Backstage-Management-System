@@ -38,7 +38,8 @@ class Home extends Component {
                         <Card className="home-data-card users"
                               hoverable={true}>
                             <SupervisorAccountIcon className="user-icon"
-                                                   style={{ fontSize: 70 }} />
+                                                   style={{ fontSize: 70 }}
+                            />
                             <div className="home-data-card-text">
                                 <span className="text">Users</span>
                                 <span className="number">{this.state.userCount}</span>
@@ -50,7 +51,8 @@ class Home extends Component {
                         <Card className="home-data-card products"
                               hoverable={true}>
                             <LocalMallIcon className="product-icon"
-                                           style={{ fontSize: 70 }} />
+                                           style={{ fontSize: 70 }}
+                            />
                             <div className="home-data-card-text">
                                 <span className="text">Products</span>
                                 <span className="number">{this.state.productCount}</span>
@@ -62,7 +64,8 @@ class Home extends Component {
                         <Card className="home-data-card orders"
                               hoverable={true}>
                             <ListAltIcon className="order-icon"
-                                         style={{ fontSize: 70 }} />
+                                         style={{ fontSize: 70 }}
+                            />
                             <div className="home-data-card-text">
                                 <span className="text">Orders</span>
                                 <span className="number">{this.state.orderCount}</span>

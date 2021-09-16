@@ -3,12 +3,11 @@
  * @Date: 2021/9/2 17:21
  */
 
-import React, { Component } from 'react';
 import MUtil from "../util/mutil";
 
 const _mutil = new MUtil();
 
-class UserService extends Component {
+class UserService {
     login(loginInfo) {
         return _mutil.request({
             type: 'POST',

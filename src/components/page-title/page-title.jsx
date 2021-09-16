@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/8/23 21:05
+ * @Date: 09/16/21 11:28 PM
  */
 
 import React, { Component } from 'react';
@@ -21,7 +21,9 @@ class PageTitle extends Component {
     render() {
         return (
             <div className="page-title">
-                <Title level={2}>{this.props.title}</Title>
+                <Title level={2} style={{marginBottom: 30}}>
+                    {this.props.title}
+                </Title>
             </div>
         );
     }

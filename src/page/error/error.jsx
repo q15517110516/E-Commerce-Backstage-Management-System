@@ -20,7 +20,8 @@ class ErrorPage extends Component {
             <div className="error-page">
                 <img className="error-img"
                      src={img}
-                     alt="error" />
+                     alt="error"
+                />
                 <div className="error-text">
                     <p>Sorry, something went wrong.</p>
                 </div>
