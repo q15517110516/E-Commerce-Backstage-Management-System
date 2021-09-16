@@ -45,7 +45,7 @@ const columns = [
     {
         dataIndex: 'registered',
         title: 'Registration Time',
-        render: registered => `${moment(registered.date).format('MMM Do YYYY')}`,
+        render: registered => `${moment(registered.date).format('MM/DD/YYYY h:mm:ss A')}`,
         width: '20%'
     }
 ];
@@ -55,9 +55,10 @@ class Users extends Component {
         super(props);
         this.state = {
             data: [],
+            loading: false,
             pagination: {
                 current: 1,
-                pageSize: 10,
+                pageSize: 10
             }
         }
     }
@@ -67,13 +68,18 @@ class Users extends Component {
     }
 
     getUsers(params = {}) {
+        this.setState({
+            loading: true
+        });
+
         _getUser.getRandomUsers()
-            .then(data => {
+            .then(res => {
                 this.setState({
-                    data: data.results,
+                    loading: false,
+                    data: res.results,
                     pagination: {
                         ...params.pagination,
-                        total: data.totalCount,
+                        total: res.totalCount,
                     }
                 })
             })
@@ -89,6 +95,7 @@ class Users extends Component {
                         rowKey={record => record.login.uuid}
                         dataSource={this.state.data}
                         pagination={this.state.pagination}
+                        loading={this.state.loading}
                     />
                 </div>
             </div>

@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 09/14/21 8:04 PM
+ * @Date: 09/16/21 11:13 PM
  */
 
 import React, { Component } from 'react';
@@ -13,9 +13,20 @@ import Orders from "./page/orders/orders";
 import Users from "./page/users/users";
 import Login from "./page/login/login";
 import ErrorPage from "./page/error/error";
+import MUtil from "./util/mutil";
+
+const _mutil = new MUtil();
 
 class App extends Component {
-  render() {
+    constructor(props) {
+        super(props);
+        // When not logged in, should not access to other page
+        // this.state = {
+        //     isLoggedIn: _mutil.getStorage('userInfo')
+        // }
+    }
+
+    render() {
       let LayoutRouter = (
           <HomeLayout>
               <Switch>
@@ -32,10 +43,14 @@ class App extends Component {
               <Switch>
                   <Route path="/login" component={Login} />
                   <Route path="/" render={props => LayoutRouter} />
+                  {/*{this.state.isLoggedIn ?*/}
+                  {/*    <Route path="/" render={props => LayoutRouter} /> :*/}
+                  {/*    <Redirect to="/login" component={Login} />*/}
+                  {/*}*/}
               </Switch>
           </Router>
       );
-  }
+    }
 }
 
 export default App;
