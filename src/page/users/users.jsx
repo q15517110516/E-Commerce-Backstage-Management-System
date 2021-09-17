@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 09/16/21 4:49 PM
+ * @Date: 09/17/21 11:06 AM
  */
 
 import React, { Component } from 'react';
@@ -8,9 +8,7 @@ import PageTitle from "../../components/page-title/page-title";
 import { Table } from 'antd';
 import 'antd/dist/antd.css';
 import GetUsersService from '../../service/getUsers.service';
-import * as _moment from 'moment';
 
-const moment = _moment;
 const _getUser = new GetUsersService();
 
 const columns = [
@@ -45,7 +43,7 @@ const columns = [
     {
         dataIndex: 'registered',
         title: 'Registration Time',
-        render: registered => `${moment(registered.date).format('MM/DD/YYYY h:mm:ss A')}`,
+        render: registered => `${new Date(registered.date).toLocaleString()}`,
         width: '20%'
     }
 ];
