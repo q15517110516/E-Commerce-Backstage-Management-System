@@ -18,9 +18,9 @@ class MUtil {
                     if (0 === res.status) {
                         typeof resolve === 'function' && resolve(res.data, res.msg);
                     }
-                    // Not loggedin, redirect to login page
+                    // Not logged in, redirect to login page
                     else if (10 === res.status) {
-                        this.doLogin();
+                        // this.doLogin();
                     }
                     else {
                         typeof reject === 'function' && reject(res.msg || res.data);

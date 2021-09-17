@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import { AssignmentOutlined, HomeOutlined, LocalMallOutlined, PeopleOutlineOutlined } from "@material-ui/icons";
 import { Layout, Menu } from 'antd';
 import 'antd/dist/antd.css';
-import { Link, NavLink, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;

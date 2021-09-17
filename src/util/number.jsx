@@ -3,7 +3,7 @@
  * @Date: 09/14/21 3:24 PM
  */
 
-class Number {
+class FormatNumber {
     formatNumber(num) {
         if (num && num.length > 0) {
             let parts = num.split('.');
@@ -16,4 +16,4 @@ class Number {
     }
 }
 
-export default Number;
+export default FormatNumber;

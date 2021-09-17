@@ -5,7 +5,7 @@
 
 import $ from 'jquery';
 
-class GetUsersService {
+class UserListService {
     getRandomUsers() {
         return $.ajax({
             url: 'https://randomuser.me/api/?results=240&nat=us',
@@ -14,4 +14,4 @@ class GetUsersService {
     }
 }
 
-export default GetUsersService;
+export default UserListService;
