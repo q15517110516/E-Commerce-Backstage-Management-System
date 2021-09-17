@@ -11,7 +11,7 @@ class UserService {
     login(loginInfo) {
         return _mutil.request({
             type: 'POST',
-            url: 'http://admintest.happymmall.com/manage/user/login.do',
+            url: 'http://adminv2.happymmall.com/manage/user/login.do',
             data: loginInfo
         });
     }
@@ -19,7 +19,7 @@ class UserService {
     logout() {
         return _mutil.request({
             type: 'POST',
-            url: 'http://admintest.happymmall.com/user/logout.do'
+            url: 'http://adminv2.happymmall.com/user/logout.do'
         });
     }
 }

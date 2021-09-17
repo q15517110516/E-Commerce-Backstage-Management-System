@@ -13,7 +13,7 @@ class ProductService {
             data = {};
 
         if (params.listType === 'list') {
-            url = 'http://admintest.happymmall.com/manage/product/list.do';
+            url = 'http://adminv2.happymmall.com/manage/product/list.do';
             data.pageNum = params.pageNum;
             data.pageSize = params.pageSize;
         }

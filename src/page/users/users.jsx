@@ -7,9 +7,9 @@ import React, { Component } from 'react';
 import PageTitle from "../../components/page-title/page-title";
 import { Table } from 'antd';
 import 'antd/dist/antd.css';
-import GetUsersService from '../../service/getUsers.service';
+import UserListService from '../../service/user-list.service';
 
-const _getUser = new GetUsersService();
+const _getUser = new UserListService();
 
 const columns = [
     {
