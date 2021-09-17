@@ -11,9 +11,9 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import { Card } from 'antd';
 import { Link } from 'react-router-dom';
-import Number from "../../util/number";
+import FormatNumber from "../../util/number";
 
-const _number = new Number();
+const _number = new FormatNumber();
 
 class Home extends Component {
     constructor(props) {
