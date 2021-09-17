@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import PageTitle from "../../components/page-title/page-title";
+import PageTitle from "../../../components/page-title/page-title";
 
 class Category extends Component {
     constructor(props) {

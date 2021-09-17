@@ -85,7 +85,7 @@ class Users extends Component {
 
     render() {
         return (
-            <div>
+            <div className="user-list">
                 <PageTitle title="Users" />
                 <div className="user-table">
                     <Table
