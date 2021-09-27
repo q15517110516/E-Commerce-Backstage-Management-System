@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 09/17/21 5:48 PM
+ * @Date: 2021-09-27 14:46
  */
 
 import MUtil from "../util/mutil";
@@ -13,7 +13,7 @@ class ProductService {
             data = {};
 
         if (params.listType === 'list') {
-            url = 'http://adminv2.happymmall.com/manage/product/list.do';
+            url = '/manage/product/list.do';
             data.pageNum = params.pageNum;
             data.pageSize = params.pageSize;
         }
