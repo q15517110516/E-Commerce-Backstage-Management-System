@@ -50,9 +50,9 @@ class Product extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            list            : [],
-            pageNum         : 1,
-            listType        : 'list',
+            list: [],
+            pageNum: 1,
+            listType: 'list',
             pageSize: 10
         }
     }
