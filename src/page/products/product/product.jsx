@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 09/17/21 5:00 PM
+ * @Date: 2021-09-27 14:46
  */
 
 import React, { Component } from 'react';
@@ -17,33 +17,33 @@ const columns = [
     {
         dataIndex: 'id',
         title: 'ID',
-        render: id => `${id.value}`,
+        render: id => `${id}`,
         width: '5%'
     },
     {
         dataIndex: 'name',
         title: 'Name',
-        render: id => `${id.value}`,
+        render: name => `${name}`,
         width: '10%'
     },
     {
         dataIndex: 'price',
         title: 'Price',
-        render: id => `${id.value}`,
+        render: price => `${price}`,
         width: '5%'
     },
     {
         dataIndex: 'status',
         title: 'Status',
-        render: id => `${id.value}`,
+        render: status => `${status}`,
         width: '10%'
     },
-    {
-        dataIndex: 'id',
-        title: 'Action',
-        render: id => `${id.value}`,
-        width: '10%'
-    },
+    // {
+    //     dataIndex: 'action',
+    //     title: 'Action',
+    //     render: id => `${id.value}`,
+    //     width: '10%'
+    // },
 ];
 
 class Product extends Component {

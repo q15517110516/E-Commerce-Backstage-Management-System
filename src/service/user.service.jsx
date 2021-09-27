@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/9/2 17:21
+ * @Date: 2021-09-27 14:46
  */
 
 import MUtil from "../util/mutil";
@@ -11,7 +11,7 @@ class UserService {
     login(loginInfo) {
         return _mutil.request({
             type: 'POST',
-            url: 'http://adminv2.happymmall.com/manage/user/login.do',
+            url: '/manage/user/login.do',
             data: loginInfo
         });
     }
@@ -19,7 +19,7 @@ class UserService {
     logout() {
         return _mutil.request({
             type: 'POST',
-            url: 'http://adminv2.happymmall.com/user/logout.do'
+            url: '/user/logout.do'
         });
     }
 }
