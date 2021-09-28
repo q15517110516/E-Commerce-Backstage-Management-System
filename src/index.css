@@ -10,3 +10,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.MuiButton-textPrimary {
+  color: #1890ff !important;
+}
+
+.MuiButton-outlinedPrimary {
+  color: #1890ff !important;
+  border: 1px solid #1890ff !important;
+}

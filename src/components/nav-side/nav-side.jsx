@@ -57,7 +57,8 @@ class NavSide extends Component {
             <Sider className="side-nav"
                    trigger={null}
                    collapsible
-                   collapsed={this.props.collapsed}>
+                   collapsed={this.props.collapsed}
+                   width={270}>
                 {/*Side Bar*/}
                 <div className="logo" />
                 <Menu theme="dark"

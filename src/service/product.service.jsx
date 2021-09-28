@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021-09-27 14:46
+ * @Date: 2021-09-28 17:51
  */
 
 import MUtil from "../util/mutil";
@@ -18,9 +18,17 @@ class ProductService {
             data.pageSize = params.pageSize;
         }
         return _mutil.request({
-            type    : 'POST',
-            url     : url,
-            data    : data
+            type: 'POST',
+            url: url,
+            data: data
+        });
+    }
+
+    changeProductStatus(productInfo) {
+        return _mutil.request({
+            type: 'POST',
+            url: '/manage/product/set_sale_status.do',
+            data: productInfo
         });
     }
 }

@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/9/2 15:19
+ * @Date: 2021-09-28 17:42
  */
 
 import $ from 'jquery';
@@ -20,7 +20,7 @@ class MUtil {
                     }
                     // Not logged in, redirect to login page
                     else if (10 === res.status) {
-                        // this.doLogin();
+                        this.doLogin();
                     }
                     else {
                         typeof reject === 'function' && reject(res.msg || res.data);
@@ -47,9 +47,14 @@ class MUtil {
         return result ? decodeURIComponent(result[2]) : null;
     }
 
-    // Error Tip
-    errorTips(errMsg) {
-        alert(errMsg || 'Something’s wrong');
+    // Success Message
+    successMessage(successMsg) {
+        alert(successMsg || 'Operation Successful!');
+    }
+
+    // Error Message
+    errorMessage(errMsg) {
+        alert(errMsg || 'Oops! Something went wrong.');
     }
 
     // Store Data to LocalStorage

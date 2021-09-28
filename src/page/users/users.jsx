@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 09/17/21 11:06 AM
+ * @Date: 2021-09-28 11:52
  */
 
 import React, { Component } from 'react';
@@ -22,23 +22,23 @@ const columns = [
         dataIndex: 'name',
         title: 'Name',
         render: name => `${name.first} ${name.last}`,
-        width: '10%'
+        width: '20%'
     },
     {
         dataIndex: 'dob',
         title: 'Age',
         render: dob => `${dob.age}`,
-        width: '5%'
+        width: '10%'
     },
     {
         dataIndex: 'email',
         title: 'Email',
-        width: '15%'
+        width: '20%'
     },
     {
         dataIndex: 'phone',
         title: 'Phone',
-        width: '15%'
+        width: '20%'
     },
     {
         dataIndex: 'registered',
@@ -70,17 +70,16 @@ class Users extends Component {
             loading: true
         });
 
-        _getUser.getRandomUsers()
-            .then(res => {
-                this.setState({
-                    loading: false,
-                    data: res.results,
-                    pagination: {
-                        ...params.pagination,
-                        total: res.totalCount,
-                    }
-                })
+        _getUser.getRandomUsers().then(res => {
+            this.setState({
+                loading: false,
+                data: res.results,
+                pagination: {
+                    ...params.pagination,
+                    total: res.totalCount,
+                }
             })
+        })
     }
 
     render() {
@@ -94,6 +93,7 @@ class Users extends Component {
                         dataSource={this.state.data}
                         pagination={this.state.pagination}
                         loading={this.state.loading}
+                        scroll={{ y: 700 }}
                     />
                 </div>
             </div>
