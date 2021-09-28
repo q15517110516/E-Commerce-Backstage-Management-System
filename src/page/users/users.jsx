@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 09/17/21 11:06 AM
+ * @Date: 2021-09-28 11:52
  */
 
 import React, { Component } from 'react';
@@ -94,6 +94,7 @@ class Users extends Component {
                         dataSource={this.state.data}
                         pagination={this.state.pagination}
                         loading={this.state.loading}
+                        scroll={{ y: 700 }}
                     />
                 </div>
             </div>
