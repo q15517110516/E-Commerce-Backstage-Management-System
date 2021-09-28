@@ -70,17 +70,16 @@ class Users extends Component {
             loading: true
         });
 
-        _getUser.getRandomUsers()
-            .then(res => {
-                this.setState({
-                    loading: false,
-                    data: res.results,
-                    pagination: {
-                        ...params.pagination,
-                        total: res.totalCount,
-                    }
-                })
+        _getUser.getRandomUsers().then(res => {
+            this.setState({
+                loading: false,
+                data: res.results,
+                pagination: {
+                    ...params.pagination,
+                    total: res.totalCount,
+                }
             })
+        })
     }
 
     render() {

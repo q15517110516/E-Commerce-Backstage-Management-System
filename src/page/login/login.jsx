@@ -52,7 +52,7 @@ class Login extends Component {
             _mutil.setStorage('userInfo', res); // store username and password to localStorage
             this.props.history.push(this.state.redirect); // redirect after successful login
         }, errMsg => {
-            _mutil.errorTips(errMsg);
+            _mutil.errorMessage(errMsg);
         });
     }
 

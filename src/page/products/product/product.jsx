@@ -6,7 +6,6 @@
 import React, { Component } from 'react';
 import { Table, Space, Switch } from 'antd';
 import 'antd/dist/antd.css';
-import './product.css';
 import PageTitle from "../../../components/page-title/page-title";
 import ProductService from '../../../service/product.service';
 import MUtil from '../../../util/mutil';
@@ -35,13 +34,14 @@ const columns = [
         width: '15%'
     },
     {
-        dataIndex: 'status',
         title: 'Status',
-        render: status => (
-                <Space size="large">
-                    <Switch checked={status === 1} />
-                    <span>{status === 1 ? 'In Stock' : 'Out of Stock'}</span>
-                </Space>
+        render: data => (
+            <Space size="large">
+                <Switch checked={data.status === 1}
+                        // onChange={e => this.onSwitchChange(e, data.id, data.status)}
+                />
+                <span>{data.status === 1 ? 'In Stock' : 'Out of Stock'}</span>
+            </Space>
         ),
         width: '15%'
     },
@@ -55,7 +55,6 @@ const columns = [
                 <Link to={`/product/${data.id}/edit`}>
                     Edit
                 </Link>
-                {/*<a>{data.status === 1 ? 'Remove' : 'Publish'}</a>*/}
             </Space>
         ),
         width: '15%'
@@ -103,7 +102,7 @@ class Product extends Component {
             this.setState({
                 list : []
             });
-            _mutil.errorTips(errMsg);
+            _mutil.errorMessage(errMsg);
         });
     }
 
@@ -119,6 +118,23 @@ class Product extends Component {
         this.setState({
             pageSize: pageSize
         })
+    }
+
+    // Change status of product
+    onSwitchChange(e, productId, currentStatus) {
+        let newStatus = currentStatus === 1 ? 2 : 1,
+            confirmTip = currentStatus === 1 ? 'Are you sure you want to Remove this product?' : 'Are you sure you want to Publish this product?';
+        if (window.confirm(confirmTip)) {
+            _product.changeProductStatus({
+                productId: productId,
+                status: newStatus
+            }).then(res => {
+                _mutil.successMessage(res);
+                this.getProductList();
+            }, errMsg => {
+                _mutil.errorMessage(errMsg);
+            })
+        }
     }
 
     render() {
