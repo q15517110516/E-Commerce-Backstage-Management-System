@@ -22,23 +22,23 @@ const columns = [
         dataIndex: 'name',
         title: 'Name',
         render: name => `${name.first} ${name.last}`,
-        width: '10%'
+        width: '20%'
     },
     {
         dataIndex: 'dob',
         title: 'Age',
         render: dob => `${dob.age}`,
-        width: '5%'
+        width: '10%'
     },
     {
         dataIndex: 'email',
         title: 'Email',
-        width: '15%'
+        width: '20%'
     },
     {
         dataIndex: 'phone',
         title: 'Phone',
-        width: '15%'
+        width: '20%'
     },
     {
         dataIndex: 'registered',

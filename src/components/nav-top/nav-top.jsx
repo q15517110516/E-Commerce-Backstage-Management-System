@@ -110,7 +110,7 @@ class NavTop extends Component {
                         <div key="menuFold"
                              className="trigger"
                              onClick={this.props.menuToggle}
-                             style={ this.props.collapsed ? { marginLeft: 80 } : { marginLeft: 200 } }>
+                             style={ this.props.collapsed ? { marginLeft: 80 } : { marginLeft: 270 } }>
                             {this.props.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                         </div>
                         <Dropdown overlay={this.state.username ? logoutMenu : loginMenu}

@@ -20,7 +20,7 @@ class MUtil {
                     }
                     // Not logged in, redirect to login page
                     else if (10 === res.status) {
-                        // this.doLogin();
+                        this.doLogin();
                     }
                     else {
                         typeof reject === 'function' && reject(res.msg || res.data);

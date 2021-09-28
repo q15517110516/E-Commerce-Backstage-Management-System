@@ -4,11 +4,13 @@
  */
 
 import React, { Component } from 'react';
-import { Table } from 'antd';
+import { Table, Space, Switch } from 'antd';
 import 'antd/dist/antd.css';
+import './product.css';
 import PageTitle from "../../../components/page-title/page-title";
 import ProductService from '../../../service/product.service';
 import MUtil from '../../../util/mutil';
+import { Link } from 'react-router-dom';
 
 const _product = new ProductService();
 const _mutil = new MUtil();
@@ -18,32 +20,46 @@ const columns = [
         dataIndex: 'id',
         title: 'ID',
         render: id => `${id}`,
-        width: '5%'
+        width: '10%'
     },
     {
         dataIndex: 'name',
         title: 'Name',
         render: name => `${name}`,
-        width: '10%'
+        width: '45%'
     },
     {
         dataIndex: 'price',
         title: 'Price',
-        render: price => `${price}`,
-        width: '5%'
+        render: price => `${'$ ' + price}`,
+        width: '15%'
     },
     {
         dataIndex: 'status',
         title: 'Status',
-        render: status => `${status}`,
-        width: '5%'
+        render: status => (
+                <Space size="large">
+                    <Switch checked={status === 1} />
+                    <span>{status === 1 ? 'In Stock' : 'Out of Stock'}</span>
+                </Space>
+        ),
+        width: '15%'
     },
-    // {
-    //     dataIndex: 'action',
-    //     title: 'Action',
-    //     render: id => `${id.value}`,
-    //     width: '10%'
-    // },
+    {
+        title: 'Action',
+        render: (data) => (
+            <Space size="large">
+                <Link to={`/product/${data.id}/detail`}>
+                    Details
+                </Link>
+                <Link to={`/product/${data.id}/edit`}>
+                    Edit
+                </Link>
+                {/*<a>{data.status === 1 ? 'Remove' : 'Publish'}</a>*/}
+            </Space>
+        ),
+        width: '15%'
+    },
 ];
 
 class Product extends Component {
@@ -119,7 +135,7 @@ class Product extends Component {
                 <div className="product-table">
                     <Table
                         columns={columns}
-                        rowKey={record => console.log(record.id)}
+                        rowKey={record => record.id}
                         dataSource={this.state.list}
                         pagination={paginationProps}
                         loading={this.state.loading}

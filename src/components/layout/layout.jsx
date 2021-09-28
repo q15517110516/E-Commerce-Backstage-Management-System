@@ -37,7 +37,7 @@ class HomeLayout extends Component {
                     />
                     {/*Content*/}
                     <Content className="site-layout-background-content"
-                             style={ this.state.collapsed ? { margin: '89px 16px 24px 96px' } : { margin: '89px 16px 24px 216px' } }>
+                             style={ this.state.collapsed ? { margin: '89px 16px 24px 96px' } : { margin: '89px 16px 24px 286px' } }>
                         {this.props.children}
                     </Content>
                 </Layout>

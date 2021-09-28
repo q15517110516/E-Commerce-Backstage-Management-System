@@ -88,12 +88,3 @@
 .ant-dropdown-menu-title-content > a > span {
     margin-right: 10px;
 }
-
-.MuiButton-textPrimary {
-    color: #1890ff !important;
-}
-
-.MuiButton-outlinedPrimary {
-    color: #1890ff !important;
-    border: 1px solid #1890ff !important;
-}
