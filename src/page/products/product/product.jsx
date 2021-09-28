@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021-09-27 14:46
+ * @Date: 2021-09-28 11:34
  */
 
 import React, { Component } from 'react';
@@ -36,7 +36,7 @@ const columns = [
         dataIndex: 'status',
         title: 'Status',
         render: status => `${status}`,
-        width: '10%'
+        width: '5%'
     },
     // {
     //     dataIndex: 'action',
@@ -51,9 +51,11 @@ class Product extends Component {
         super(props);
         this.state = {
             list: [],
-            pageNum: 1,
             listType: 'list',
-            pageSize: 10
+            pageNum: 1,
+            pageSize: 10,
+            total: 0,
+            loading: false
         }
     }
 
@@ -62,6 +64,10 @@ class Product extends Component {
     }
 
     getProductList() {
+        this.setState({
+            loading: true
+        })
+
         let listParam = {};
         listParam.listType = this.state.listType;
         listParam.pageNum  = this.state.pageNum;
@@ -74,6 +80,9 @@ class Product extends Component {
         // 请求接口
         _product.getProductList(listParam).then(res => {
             this.setState(res);
+            this.setState({
+                loading: false
+            })
         }, errMsg => {
             this.setState({
                 list : []
@@ -82,17 +91,39 @@ class Product extends Component {
         });
     }
 
+    onPageNumChange(current){
+        this.setState({
+            pageNum : current
+        }, () => {
+            this.getProductList();
+        });
+    }
+
+    onPageSizeChange(pageSize, current) {
+        this.setState({
+            pageSize: pageSize
+        })
+    }
+
     render() {
+        const paginationProps = {
+            current: this.state.pageNum,
+            pageSize: this.state.pageSize,
+            total: this.state.total,
+            onChange: pageNum => this.onPageNumChange(pageNum),
+            onShowSizeChange: (current, pageSize) => this.onPageSizeChange(pageSize,current),
+        }
         return (
             <div className="product-list">
                 <PageTitle title="Products" />
                 <div className="product-table">
                     <Table
                         columns={columns}
-                        // rowKey={record => record.login.uuid}
+                        rowKey={record => console.log(record.id)}
                         dataSource={this.state.list}
-                        // pagination={this.state.pagination}
-                        // loading={this.state.loading}
+                        pagination={paginationProps}
+                        loading={this.state.loading}
+                        scroll={{ y: 700 }}
                     />
                 </div>
             </div>
