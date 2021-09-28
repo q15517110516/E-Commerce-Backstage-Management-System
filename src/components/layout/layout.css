@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/9/2 19:27
+ * @Date: 2021-09-28 11:39
  */
 
 .side-nav {
@@ -8,7 +8,7 @@
     position: fixed;
     bottom: 0;
     top: 0;
-    z-index: 1;
+    z-index: 999;
 }
 
 .site-layout-background-header {
@@ -16,6 +16,7 @@
     background: #fff;
     position: fixed;
     width: 100%;
+    z-index: 998;
 }
 
 .site-layout-background-content {
