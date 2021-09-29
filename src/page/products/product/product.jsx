@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021-09-28 11:34
+ * @Date: 2021-09-29 15:01
  */
 
 import React, { Component } from 'react';
@@ -13,53 +13,6 @@ import { Link } from 'react-router-dom';
 
 const _product = new ProductService();
 const _mutil = new MUtil();
-
-const columns = [
-    {
-        dataIndex: 'id',
-        title: 'ID',
-        render: id => `${id}`,
-        width: '10%'
-    },
-    {
-        dataIndex: 'name',
-        title: 'Name',
-        render: name => `${name}`,
-        width: '45%'
-    },
-    {
-        dataIndex: 'price',
-        title: 'Price',
-        render: price => `${'$ ' + price}`,
-        width: '15%'
-    },
-    {
-        title: 'Status',
-        render: data => (
-            <Space size="large">
-                <Switch checked={data.status === 1}
-                        // onChange={e => this.onSwitchChange(e, data.id, data.status)}
-                />
-                <span>{data.status === 1 ? 'In Stock' : 'Out of Stock'}</span>
-            </Space>
-        ),
-        width: '15%'
-    },
-    {
-        title: 'Action',
-        render: (data) => (
-            <Space size="large">
-                <Link to={`/product/${data.id}/detail`}>
-                    Details
-                </Link>
-                <Link to={`/product/${data.id}/edit`}>
-                    Edit
-                </Link>
-            </Space>
-        ),
-        width: '15%'
-    },
-];
 
 class Product extends Component {
     constructor(props) {
@@ -138,6 +91,55 @@ class Product extends Component {
     }
 
     render() {
+        // Table Columns
+        const columnsInfo = [
+            {
+                dataIndex: 'id',
+                title: 'ID',
+                render: id => `${id}`,
+                width: '10%'
+            },
+            {
+                dataIndex: 'name',
+                title: 'Name',
+                render: name => `${name}`,
+                width: '45%'
+            },
+            {
+                dataIndex: 'price',
+                title: 'Price',
+                render: price => `${'$ ' + price}`,
+                width: '15%'
+            },
+            {
+                title: 'Status',
+                render: data => (
+                    <Space size="large">
+                        <Switch checked={data.status === 1}
+                                onChange={e => this.onSwitchChange(e, data.id, data.status)}
+                        />
+                        <span>{data.status === 1 ? 'In Stock' : 'Out of Stock'}</span>
+                    </Space>
+                ),
+                width: '15%'
+            },
+            {
+                title: 'Action',
+                render: (data) => (
+                    <Space size="large">
+                        <Link to={`/product/${data.id}/detail`}>
+                            Details
+                        </Link>
+                        <Link to={`/product/${data.id}/edit`}>
+                            Edit
+                        </Link>
+                    </Space>
+                ),
+                width: '15%'
+            },
+        ];
+
+        // Pagination Config
         const paginationProps = {
             current: this.state.pageNum,
             pageSize: this.state.pageSize,
@@ -150,7 +152,7 @@ class Product extends Component {
                 <PageTitle title="Products" />
                 <div className="product-table">
                     <Table
-                        columns={columns}
+                        columns={columnsInfo}
                         rowKey={record => record.id}
                         dataSource={this.state.list}
                         pagination={paginationProps}
