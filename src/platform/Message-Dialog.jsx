@@ -25,7 +25,7 @@ class MessageDialog extends Component {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={this.props.onLogout}
+                    <Button onClick={this.props.onContinueClick}
                             variant="contained"
                             color="primary"
                     >

@@ -10,6 +10,7 @@ import PageTitle from "../../../components/page-title/page-title";
 import ProductService from '../../../service/product.service';
 import MUtil from '../../../util/mutil';
 import { Link } from 'react-router-dom';
+import MessageDialog from "../../../platform/Message-Dialog";
 
 const _product = new ProductService();
 const _mutil = new MUtil();
@@ -23,8 +24,13 @@ class Product extends Component {
             pageNum: 1,
             pageSize: 10,
             total: 0,
-            loading: false
+            loading: false,
+            selectProduct: '',
+            showDialog: false,
+            productStatus: ''
         }
+        this.showDialog = this.showDialog.bind(this);
+        this.onCloseDialog = this.onCloseDialog.bind(this);
     }
 
     componentDidMount() {
@@ -73,26 +79,44 @@ class Product extends Component {
         })
     }
 
+    onChangeSelectProduct(product) {
+        this.setState({
+            selectProduct: product
+        })
+    }
+
+    showDialog() {
+        this.setState({
+            showDialog: true
+        })
+    }
+
+    onCloseDialog() {
+        this.setState({
+            showDialog: false
+        });
+    }
+
     // Change status of product
     onSwitchChange(e, productId, currentStatus) {
-        let newStatus = currentStatus === 1 ? 2 : 1,
-            confirmTip = currentStatus === 1 ? 'Are you sure you want to Remove this product?' : 'Are you sure you want to Publish this product?';
-        if (window.confirm(confirmTip)) {
-            _product.changeProductStatus({
-                productId: productId,
-                status: newStatus
-            }).then(res => {
-                _mutil.successMessage(res);
-                this.getProductList();
-            }, errMsg => {
-                _mutil.errorMessage(errMsg);
-            })
-        }
+        let newStatus = currentStatus === 1 ? 2 : 1;
+        _product.changeProductStatus({
+            productId: productId,
+            status: newStatus
+        }).then(res => {
+            this.setState({
+                productStatus: newStatus
+            });
+            this.getProductList();
+            this.onCloseDialog();
+        }, errMsg => {
+            _mutil.errorMessage(errMsg);
+        })
     }
 
     render() {
         // Table Columns
-        const columnsInfo = [
+        const columns = [
             {
                 dataIndex: 'id',
                 title: 'ID',
@@ -116,7 +140,7 @@ class Product extends Component {
                 render: data => (
                     <Space size="large">
                         <Switch checked={data.status === 1}
-                                onChange={e => this.onSwitchChange(e, data.id, data.status)}
+                                onChange={() => {this.onChangeSelectProduct(data); this.showDialog();}}
                         />
                         <span>{data.status === 1 ? 'In Stock' : 'Out of Stock'}</span>
                     </Space>
@@ -147,12 +171,13 @@ class Product extends Component {
             onChange: pageNum => this.onPageNumChange(pageNum),
             onShowSizeChange: (current, pageSize) => this.onPageSizeChange(pageSize,current),
         }
+
         return (
             <div className="product-list">
                 <PageTitle title="Products" />
                 <div className="product-table">
                     <Table
-                        columns={columnsInfo}
+                        columns={columns}
                         rowKey={record => record.id}
                         dataSource={this.state.list}
                         pagination={paginationProps}
@@ -160,6 +185,17 @@ class Product extends Component {
                         scroll={{ y: 700 }}
                     />
                 </div>
+
+                {/*Confirmation Dialog*/}
+                <MessageDialog
+                    title={this.state.productStatus === 1 ? 'Remove' : 'Publish'}
+                    showDialog={this.state.showDialog}
+                    message={this.state.productStatus === 1 ? 'Are you sure you want to Remove this product?' : 'Are you sure you want to Publish this product?'}
+                    confirmBtnLabel="Continue"
+                    cancelBtnLabel="Cancel"
+                    onContinueClick={e => this.onSwitchChange(e, this.state.selectProduct.id, this.state.selectProduct.status)}
+                    onCancelClick={this.onCloseDialog}
+                />
             </div>
         );
     }

@@ -27,7 +27,7 @@ class NavTop extends Component {
         }
         this.onLogout = this.onLogout.bind(this);
         this.showDialog = this.showDialog.bind(this);
-        this.onCancelClick = this.onCancelClick.bind(this);
+        this.onCloseDialog = this.onCloseDialog.bind(this);
     }
 
     showDialog() {
@@ -36,7 +36,7 @@ class NavTop extends Component {
         });
     }
 
-    onCancelClick() {
+    onCloseDialog() {
         this.setState({
             showDialog: false
         });
@@ -76,8 +76,8 @@ class NavTop extends Component {
                         message="Are you sure you want to log out?"
                         confirmBtnLabel="Continue"
                         cancelBtnLabel="Cancel"
-                        onLogout={this.onLogout}
-                        onCancelClick={this.onCancelClick}
+                        onContinueClick={this.onLogout}
+                        onCancelClick={this.onCloseDialog}
                     />
                 </Menu.Item>
             </Menu>
