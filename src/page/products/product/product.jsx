@@ -11,6 +11,7 @@ import ProductService from '../../../service/product.service';
 import MUtil from '../../../util/mutil';
 import { Link } from 'react-router-dom';
 import MessageDialog from "../../../platform/Message-Dialog";
+import { green } from "@material-ui/core/colors";
 
 const _product = new ProductService();
 const _mutil = new MUtil();
@@ -111,6 +112,7 @@ class Product extends Component {
             this.onCloseDialog();
         }, errMsg => {
             _mutil.errorMessage(errMsg);
+            this.onCloseDialog();
         })
     }
 
@@ -142,7 +144,10 @@ class Product extends Component {
                         <Switch checked={data.status === 1}
                                 onChange={() => {this.onChangeSelectProduct(data); this.showDialog();}}
                         />
-                        <span>{data.status === 1 ? 'In Stock' : 'Out of Stock'}</span>
+                        <span style={ data.status === 1 ? { color: 'Green' } : { color: 'Red'} }>
+                            {data.status === 1 ? 'In Stock' : 'Out of Stock'}
+                        </span>
+
                     </Space>
                 ),
                 width: '15%'
@@ -160,7 +165,7 @@ class Product extends Component {
                     </Space>
                 ),
                 width: '15%'
-            },
+            }
         ];
 
         // Pagination Config
@@ -170,7 +175,7 @@ class Product extends Component {
             total: this.state.total,
             onChange: pageNum => this.onPageNumChange(pageNum),
             onShowSizeChange: (current, pageSize) => this.onPageSizeChange(pageSize,current),
-        }
+        };
 
         return (
             <div className="product-list">
