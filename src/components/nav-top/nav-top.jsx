@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021/9/2 19:27
+ * @Date: 2021-09-29 15:26
  */
 
 import React, { Component } from 'react';
@@ -11,8 +11,7 @@ import 'antd/dist/antd.css';
 import MUtil from "../../util/mutil";
 import UserService from "../../service/user.service";
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
+import MessageDialog from '../../platform/Message-Dialog';
 
 const _mutil = new MUtil();
 const _user = new UserService();
@@ -48,7 +47,7 @@ class NavTop extends Component {
             _mutil.removeStorage('userInfo');
             window.location.href = '/login'; // redirect to login page after logout
         }, errMsg => {
-            _mutil.errorTips(errMsg);
+            _mutil.errorMessage(errMsg);
         });
     }
 
@@ -71,33 +70,15 @@ class NavTop extends Component {
                         <LogoutOutlined />
                         Logout
                     </a>
-                    <Dialog open={this.state.showDialog}
-                            onClose={this.onCancelClick}
-                            fullWidth={true}
-                            aria-labelledby="alert-dialog-title"
-                            aria-describedby="alert-dialog-description">
-                        <DialogTitle id="alert-dialog-title">
-                            {"Log Out"}
-                        </DialogTitle>
-                        <DialogContent id="alert-dialog-description">
-                            <DialogContentText>
-                                Are you sure you want to log out?
-                            </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={this.onLogout}
-                                    variant="contained"
-                                    color="primary">
-                                Continue
-                            </Button>
-                            <Button onClick={this.onCancelClick}
-                                    variant="outlined"
-                                    color="primary"
-                                    >
-                                Cancel
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
+                    <MessageDialog
+                        title="Log Out"
+                        showDialog={this.state.showDialog}
+                        message="Are you sure you want to log out?"
+                        confirmBtnLabel="Continue"
+                        cancelBtnLabel="Cancel"
+                        onLogout={this.onLogout}
+                        onCancelClick={this.onCancelClick}
+                    />
                 </Menu.Item>
             </Menu>
         );
