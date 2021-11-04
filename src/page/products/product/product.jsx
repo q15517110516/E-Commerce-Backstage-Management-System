@@ -1,17 +1,18 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021-09-29 15:01
+ * @Date: 2021-11-04 3:03 PM
  */
 
 import React, { Component } from 'react';
-import { Table, Space, Switch } from 'antd';
 import 'antd/dist/antd.css';
-import PageTitle from "../../../components/page-title/page-title";
-import ProductService from '../../../service/product.service';
-import MUtil from '../../../util/mutil';
+import "./product.css";
 import { Link } from 'react-router-dom';
 import MessageDialog from "../../../platform/Message-Dialog";
-import { green } from "@material-ui/core/colors";
+import MUtil from '../../../util/mutil';
+import PageTitle from "../../../components/page-title/page-title";
+import ProductService from '../../../service/product.service';
+import { SearchOutlined } from '@ant-design/icons';
+import { Table, Space, Switch, Input, Radio } from 'antd';
 
 const _product = new ProductService();
 const _mutil = new MUtil();
@@ -32,6 +33,7 @@ class Product extends Component {
         }
         this.showDialog = this.showDialog.bind(this);
         this.onCloseDialog = this.onCloseDialog.bind(this);
+        this.onSearch = this.onSearch.bind(this);
     }
 
     componentDidMount() {
@@ -116,6 +118,10 @@ class Product extends Component {
         })
     }
 
+    onSearch(e) {
+        const value = e.target.value.trim();
+    }
+
     render() {
         // Table Columns
         const columns = [
@@ -180,6 +186,20 @@ class Product extends Component {
         return (
             <div className="product-list">
                 <PageTitle title="Products" />
+                <div className="tooltip">
+                    <Radio.Group buttonStyle="solid">
+                        <Radio value={1}>ID</Radio>
+                        <Radio value={2}>Name</Radio>
+                    </Radio.Group>
+                    <Input  className="search-box"
+                            placeholder="Search"
+                            suffix={
+                                <SearchOutlined className="search-icon" />
+                            }
+                            onPressEnter={e => this.onSearch(e)}
+                            style={{ width: '20%', marginBottom: 30 }}
+                    />
+                </div>
                 <div className="product-table">
                     <Table
                         columns={columns}
