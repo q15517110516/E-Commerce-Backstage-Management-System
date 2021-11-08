@@ -1,17 +1,18 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021-09-29 15:01
+ * @Date: 2021-11-08 5:43 PM
  */
 
 import React, { Component } from 'react';
-import { Table, Space, Switch } from 'antd';
 import 'antd/dist/antd.css';
-import PageTitle from "../../../components/page-title/page-title";
-import ProductService from '../../../service/product.service';
-import MUtil from '../../../util/mutil';
+import "./product.css";
 import { Link } from 'react-router-dom';
 import MessageDialog from "../../../platform/Message-Dialog";
-import { green } from "@material-ui/core/colors";
+import MUtil from '../../../util/mutil';
+import PageTitle from "../../../components/page-title/page-title";
+import ProductService from '../../../service/product.service';
+import { SearchOutlined } from '@ant-design/icons';
+import { Table, Space, Switch, Input, Radio } from 'antd';
 
 const _product = new ProductService();
 const _mutil = new MUtil();
@@ -28,10 +29,14 @@ class Product extends Component {
             loading: false,
             selectProduct: '',
             showDialog: false,
-            productStatus: ''
+            productStatus: '',
+            filterCategory: 'productId',
+            filterValue: ''
         }
         this.showDialog = this.showDialog.bind(this);
         this.onCloseDialog = this.onCloseDialog.bind(this);
+        this.onSearch = this.onSearch.bind(this);
+        this.filterChange = this.filterChange.bind(this);
     }
 
     componentDidMount() {
@@ -47,12 +52,12 @@ class Product extends Component {
         listParam.listType = this.state.listType;
         listParam.pageNum  = this.state.pageNum;
         listParam.pageSize  = this.state.pageSize;
-        // 如果是搜索的话，需要传入搜索类型和搜索关键字
-        // if(this.state.listType === 'search'){
-        //     listParam.searchType = this.state.searchType;
-        //     listParam.keyword    = this.state.searchKeyword;
-        // }
-        // 请求接口
+        // If listType === 'search', pass filter type and filter value
+        if(this.state.listType === 'search'){
+            listParam.searchType = this.state.filterCategory;
+            listParam.keyword    = this.state.filterValue;
+        }
+        // Send Request
         _product.getProductList(listParam).then(res => {
             this.setState(res);
             this.setState({
@@ -113,6 +118,28 @@ class Product extends Component {
         }, errMsg => {
             _mutil.errorMessage(errMsg);
             this.onCloseDialog();
+        })
+    }
+
+    // Change search filter
+    filterChange(e) {
+        let name = e.target.name,
+            value = e.target.value.trim();
+        this.setState({
+            [name]: value
+        })
+    }
+
+    // Search
+    onSearch() {
+        let listType = this.state.filterValue === '' ? 'list' : 'search';
+        this.setState({
+            listType: listType,
+            pageNum: 1,
+            filterCategory: this.state.filterCategory,
+            filterValue: this.state.filterValue
+        }, () => {
+            this.getProductList();
         })
     }
 
@@ -180,6 +207,27 @@ class Product extends Component {
         return (
             <div className="product-list">
                 <PageTitle title="Products" />
+                {/*Search*/}
+                <div className="tooltip">
+                    <Radio.Group onChange={e => this.filterChange(e)}
+                                 value={this.state.filterCategory}
+                                 defaultValue={'productId'}
+                                 name="filterCategory"
+                    >
+                        <Radio value={'productId'}>ID</Radio>
+                        <Radio value={'productName'}>Name</Radio>
+                    </Radio.Group>
+                    <Input  className="search-box"
+                            placeholder="Search"
+                            name="filterValue"
+                            suffix={
+                                <SearchOutlined className="search-icon" />
+                            }
+                            onPressEnter={this.onSearch}
+                            onChange={e => this.filterChange(e)}
+                            style={{ width: '25%', marginBottom: 30 }}
+                    />
+                </div>
                 <div className="product-table">
                     <Table
                         columns={columns}
