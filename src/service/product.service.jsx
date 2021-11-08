@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021-09-28 17:51
+ * @Date: 2021-11-08 5:43 PM
  */
 
 import MUtil from "../util/mutil";
@@ -16,6 +16,11 @@ class ProductService {
             url = '/manage/product/list.do';
             data.pageNum = params.pageNum;
             data.pageSize = params.pageSize;
+        }
+        else if (params.listType === 'search') {
+            url = '/manage/product/search.do';
+            data.pageNum = params.pageNum;
+            data[params.searchType] = params.keyword;
         }
         return _mutil.request({
             type: 'POST',
