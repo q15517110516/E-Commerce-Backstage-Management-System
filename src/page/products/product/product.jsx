@@ -1,6 +1,6 @@
 /**
  * @Author: Mingrui Liu
- * @Date: 2021-11-08 5:43 PM
+ * @Date: 2021-11-09 2:11 PM
  */
 
 import React, { Component } from 'react';
@@ -11,8 +11,8 @@ import MessageDialog from "../../../platform/Message-Dialog";
 import MUtil from '../../../util/mutil';
 import PageTitle from "../../../components/page-title/page-title";
 import ProductService from '../../../service/product.service';
-import { SearchOutlined } from '@ant-design/icons';
-import { Table, Space, Switch, Input, Radio } from 'antd';
+import { Table, Space, Switch } from 'antd';
+import Search from '../../../platform/Search-Bar/Search';
 
 const _product = new ProductService();
 const _mutil = new MUtil();
@@ -30,13 +30,10 @@ class Product extends Component {
             selectProduct: '',
             showDialog: false,
             productStatus: '',
-            filterCategory: 'productId',
-            filterValue: ''
         }
         this.showDialog = this.showDialog.bind(this);
         this.onCloseDialog = this.onCloseDialog.bind(this);
         this.onSearch = this.onSearch.bind(this);
-        this.filterChange = this.filterChange.bind(this);
     }
 
     componentDidMount() {
@@ -121,23 +118,14 @@ class Product extends Component {
         })
     }
 
-    // Change search filter
-    filterChange(e) {
-        let name = e.target.name,
-            value = e.target.value.trim();
-        this.setState({
-            [name]: value
-        })
-    }
-
     // Search
-    onSearch() {
-        let listType = this.state.filterValue === '' ? 'list' : 'search';
+    onSearch(filterCategory, filterValue) {
+        let listType = filterValue === '' ? 'list' : 'search';
         this.setState({
             listType: listType,
             pageNum: 1,
-            filterCategory: this.state.filterCategory,
-            filterValue: this.state.filterValue
+            filterCategory: filterCategory,
+            filterValue: filterValue
         }, () => {
             this.getProductList();
         })
@@ -209,24 +197,7 @@ class Product extends Component {
                 <PageTitle title="Products" />
                 {/*Search*/}
                 <div className="tooltip">
-                    <Radio.Group onChange={e => this.filterChange(e)}
-                                 value={this.state.filterCategory}
-                                 defaultValue={'productId'}
-                                 name="filterCategory"
-                    >
-                        <Radio value={'productId'}>ID</Radio>
-                        <Radio value={'productName'}>Name</Radio>
-                    </Radio.Group>
-                    <Input  className="search-box"
-                            placeholder="Search"
-                            name="filterValue"
-                            suffix={
-                                <SearchOutlined className="search-icon" />
-                            }
-                            onPressEnter={this.onSearch}
-                            onChange={e => this.filterChange(e)}
-                            style={{ width: '25%', marginBottom: 30 }}
-                    />
+                    <Search onSearch={(filterCategory, filterValue) => this.onSearch(filterCategory, filterValue)} />
                 </div>
                 <div className="product-table">
                     <Table
